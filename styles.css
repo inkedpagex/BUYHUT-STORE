@@ -152,18 +152,26 @@ header {
 .disclaimer-container {
     overflow: hidden;
     padding: 5px 0;
+    width: 100%; /* Make sure container takes full available width */
+    box-sizing: border-box; /* Prevent padding from increasing width */
 }
 
 .disclaimer-ticker {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%; /* Start completely outside right */
     font-size: 12px;
     color: var(--accent-red);
-    white-space: nowrap;
-    animation: ticker 35s linear infinite;
+    animation: ticker 40s linear infinite;
 }
 
 @keyframes ticker {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* Custom Dropdown Styles */
