@@ -162,7 +162,7 @@ header {
     padding-left: 100%; /* Start completely outside right */
     font-size: 12px;
     color: var(--accent-red);
-    animation: ticker 40s linear infinite;
+    animation: ticker 48s linear infinite;
 }
 
 @keyframes ticker {
