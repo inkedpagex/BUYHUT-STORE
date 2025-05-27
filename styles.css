@@ -158,7 +158,7 @@ header {
     font-size: 12px;
     color: var(--accent-red);
     white-space: nowrap;
-    animation: ticker 20s linear infinite;
+    animation: ticker 35s linear infinite;
 }
 
 @keyframes ticker {
