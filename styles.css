@@ -678,23 +678,27 @@ header {
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
   margin-bottom: 15px;
-  margin-top: -10px;
+  margin-top: -5px;
 }
 
 .social-icons a {
+  width: 40px;
+  height: 40px;
   background: #000;
-  color: white;
-  font-size: 16px;
-  padding: 10px;
+  color: #fff;
+  font-size: 18px;
   border-radius: 50%;
-  display: inline-block;
-  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: 0.3s ease;
 }
 
 .social-icons a:hover {
-  background: #e91e63;
+  background-color: ##fdd835;
 }
 
 /* Toast Message Styles */
