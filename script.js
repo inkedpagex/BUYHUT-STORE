@@ -1,1 +1,407 @@
-function _0x9a14(_0x3c5d17,_0x247fa3){const _0xec9293=_0xec92();return _0x9a14=function(_0x9a147,_0x46a3b7){_0x9a147=_0x9a147-0xcc;let _0x184e8e=_0xec9293[_0x9a147];return _0x184e8e;},_0x9a14(_0x3c5d17,_0x247fa3);}const _0x2e276c=_0x9a14;(function(_0x499e7d,_0x4d9665){const _0x376d59=_0x9a14,_0x3f0951=_0x499e7d();while(!![]){try{const _0x2e3db3=-parseInt(_0x376d59(0xde))/0x1*(parseInt(_0x376d59(0x17d))/0x2)+-parseInt(_0x376d59(0xff))/0x3*(parseInt(_0x376d59(0x159))/0x4)+parseInt(_0x376d59(0x12f))/0x5*(-parseInt(_0x376d59(0x11b))/0x6)+-parseInt(_0x376d59(0xf5))/0x7+-parseInt(_0x376d59(0x162))/0x8*(-parseInt(_0x376d59(0x15e))/0x9)+parseInt(_0x376d59(0x177))/0xa*(parseInt(_0x376d59(0x153))/0xb)+-parseInt(_0x376d59(0x15f))/0xc*(-parseInt(_0x376d59(0x106))/0xd);if(_0x2e3db3===_0x4d9665)break;else _0x3f0951['push'](_0x3f0951['shift']());}catch(_0xcac671){_0x3f0951['push'](_0x3f0951['shift']());}}}(_0xec92,0xbf57f));let allProducts=[],filteredProducts=[],currentCategory=_0x2e276c(0x157),isLoading=!![];const productsContainer=document[_0x2e276c(0x181)]('productsContainer'),loadingSpinner=document['getElementById'](_0x2e276c(0xd9)),searchInput=document[_0x2e276c(0x181)](_0x2e276c(0xd4)),searchSuggestions=document[_0x2e276c(0x181)](_0x2e276c(0x129)),categoryChips=document[_0x2e276c(0x116)]('.category-chip'),menuIcon=document['getElementById']('menuIcon'),bottomSheet=document['getElementById'](_0x2e276c(0x134)),closeSheet=document['querySelector']('.close-sheet'),menuItems=document[_0x2e276c(0x116)](_0x2e276c(0x102)),productModal=document[_0x2e276c(0x181)]('productModal'),closeModal=document[_0x2e276c(0x12b)](_0x2e276c(0x101)),toast=document[_0x2e276c(0x181)](_0x2e276c(0x167)),customDropdown=document[_0x2e276c(0x181)](_0x2e276c(0x130)),selectedCategory=document[_0x2e276c(0x181)](_0x2e276c(0x137)),dropdownMenu=document[_0x2e276c(0x181)](_0x2e276c(0x165)),dropdownItems=document[_0x2e276c(0x116)]('.custom-dropdown-item'),API_KEY='AIzaSyAq3X8C0HxkmY-l1DQlbmtqespOhauVjm0',SHEET_ID=_0x2e276c(0x10e),SHEET_NAME=_0x2e276c(0xf0),SHEET_RANGE=_0x2e276c(0x16a);document[_0x2e276c(0x11e)](_0x2e276c(0xe5),()=>{fetchProducts(),setupEventListeners(),setupCustomDropdown();});async function fetchProducts(){const _0x26f26d=_0x2e276c;isLoading=!![],loadingSpinner[_0x26f26d(0x16d)][_0x26f26d(0x114)]=_0x26f26d(0x112),productsContainer[_0x26f26d(0x16d)][_0x26f26d(0x114)]=_0x26f26d(0x13f);try{const _0x1d489a=await fetch(_0x26f26d(0x168)+SHEET_ID+_0x26f26d(0x133)+SHEET_NAME+_0x26f26d(0x145)+API_KEY);if(!_0x1d489a['ok'])throw new Error(_0x26f26d(0x13e)+_0x1d489a['status']);const _0x41d58c=await _0x1d489a[_0x26f26d(0xf6)]();if(!_0x41d58c[_0x26f26d(0x176)]||_0x41d58c[_0x26f26d(0x176)][_0x26f26d(0x141)]===0x0)throw new Error('No\x20data\x20found\x20in\x20the\x20Google\x20Sheet');if(_0x41d58c['values']['length']<0x2)throw new Error('Google\x20Sheet\x20must\x20have\x20at\x20least\x202\x20rows:\x20headers\x20in\x20Row\x201\x20and\x20product\x20data\x20starting\x20from\x20Row\x202');const _0x1c78ba=_0x41d58c[_0x26f26d(0x176)][0x0],_0x40caba=[_0x26f26d(0xe2),_0x26f26d(0x163),_0x26f26d(0xed),'Category',_0x26f26d(0x120),_0x26f26d(0x113),_0x26f26d(0xfe),_0x26f26d(0x109),_0x26f26d(0x14b),'ProductCode'],_0x19f230={};_0x40caba['forEach'](_0x4a048f=>{const _0x5cc051=_0x26f26d,_0x1380b6=_0x1c78ba[_0x5cc051(0x156)](_0x26e9d2=>_0x26e9d2['trim']()['toLowerCase']()===_0x4a048f['toLowerCase']());if(_0x1380b6===-0x1)throw new Error(_0x5cc051(0x16b)+_0x4a048f+_0x5cc051(0x111));_0x19f230[_0x4a048f[_0x5cc051(0xcd)]()]=_0x1380b6;}),allProducts=[];for(let _0x4cd106=0x1;_0x4cd106<_0x41d58c[_0x26f26d(0x176)][_0x26f26d(0x141)];_0x4cd106++){const _0x4169db=_0x41d58c[_0x26f26d(0x176)][_0x4cd106];if(_0x4169db[_0x26f26d(0x141)]<_0x1c78ba[_0x26f26d(0x141)]){console[_0x26f26d(0xf1)](_0x26f26d(0xf3)+(_0x4cd106+0x1)+_0x26f26d(0xe8));continue;}const _0x1de041=_0x19f230[_0x26f26d(0x122)];if(!_0x4169db[_0x1de041]||_0x4169db[_0x1de041][_0x26f26d(0x110)]()===''){console[_0x26f26d(0xf1)](_0x26f26d(0xf3)+(_0x4cd106+0x1)+_0x26f26d(0x11c));continue;}const _0x314c14={'name':_0x4169db[_0x19f230[_0x26f26d(0x150)]]||_0x26f26d(0x127),'priceMin':_0x4169db[_0x19f230[_0x26f26d(0x124)]]||'0','priceMax':_0x4169db[_0x19f230[_0x26f26d(0xd1)]]||'0','category':_0x4169db[_0x19f230['category']]||_0x26f26d(0x132),'buyLink':_0x4169db[_0x19f230[_0x26f26d(0xfa)]]||'#','buyOn':_0x4169db[_0x19f230[_0x26f26d(0xd7)]]||'Store','imageURL':_0x4169db[_0x19f230[_0x26f26d(0xd5)]]||_0x26f26d(0x15c),'createdTime':_0x4169db[_0x19f230['createdtime']]||new Date()[_0x26f26d(0xe7)](),'description':_0x4169db[_0x19f230[_0x26f26d(0x144)]]||_0x26f26d(0x13b),'productCode':_0x4169db[_0x19f230[_0x26f26d(0x122)]],'views':Math['floor'](Math[_0x26f26d(0x12e)]()*0x7d0)+0x3e8};allProducts[_0x26f26d(0x12a)](_0x314c14);}if(allProducts[_0x26f26d(0x141)]===0x0)throw new Error('No\x20valid\x20products\x20found\x20in\x20the\x20Google\x20Sheet.\x20Make\x20sure\x20ProductCode\x20is\x20provided\x20for\x20each\x20product.');allProducts[_0x26f26d(0x16e)]((_0x40baad,_0x164ba6)=>{return new Date(_0x164ba6['createdTime'])-new Date(_0x40baad['createdTime']);}),filteredProducts=[...allProducts],renderProducts(),checkUrlForProductCode();}catch(_0x9649d4){console[_0x26f26d(0xd8)](_0x26f26d(0x15b),_0x9649d4),productsContainer[_0x26f26d(0x155)]=_0x26f26d(0x139)+_0x9649d4[_0x26f26d(0x138)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22fetchProducts()\x22>Try\x20Again</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',productsContainer['style']['display']='block';}finally{isLoading=![],loadingSpinner[_0x26f26d(0x16d)][_0x26f26d(0x114)]=_0x26f26d(0x13f);}}function setupCustomDropdown(){const _0x9b8582=_0x2e276c;if(!customDropdown)return;customDropdown[_0x9b8582(0x12b)](_0x9b8582(0x142))[_0x9b8582(0x11e)](_0x9b8582(0xfc),()=>{const _0x55e0db=_0x9b8582;customDropdown[_0x55e0db(0xe0)]['toggle'](_0x55e0db(0x164));}),document[_0x9b8582(0x11e)](_0x9b8582(0xfc),_0x4c143b=>{const _0x3f463e=_0x9b8582;!customDropdown[_0x3f463e(0xe1)](_0x4c143b[_0x3f463e(0xda)])&&customDropdown[_0x3f463e(0xe0)][_0x3f463e(0xfd)](_0x3f463e(0x164));}),dropdownItems[_0x9b8582(0x10a)](_0x533664=>{const _0x485a2f=_0x9b8582;_0x533664[_0x485a2f(0x11e)]('click',()=>{const _0x18c57f=_0x485a2f;selectedCategory[_0x18c57f(0x135)]=_0x533664[_0x18c57f(0x135)],dropdownItems[_0x18c57f(0x10a)](_0x22d7b1=>_0x22d7b1[_0x18c57f(0xe0)][_0x18c57f(0xfd)]('active')),_0x533664[_0x18c57f(0xe0)][_0x18c57f(0x15d)](_0x18c57f(0x115)),customDropdown['classList'][_0x18c57f(0xfd)](_0x18c57f(0x164));const _0x4a30a1=_0x533664['dataset']['value'];categoryChips[_0x18c57f(0x10a)](_0x2680b8=>{const _0x35f95c=_0x18c57f;_0x2680b8[_0x35f95c(0xee)][_0x35f95c(0xea)]===_0x4a30a1?_0x2680b8['classList'][_0x35f95c(0x15d)](_0x35f95c(0x115)):_0x2680b8[_0x35f95c(0xe0)][_0x35f95c(0xfd)]('active');}),filterByCategory(_0x4a30a1);});});}function setupEventListeners(){const _0x3de774=_0x2e276c;searchInput[_0x3de774(0x11e)](_0x3de774(0x10b),_0x17cd6b=>{const _0x2903c3=_0x3de774,_0x3194d7=_0x17cd6b[_0x2903c3(0xda)][_0x2903c3(0xe4)];_0x3194d7[_0x2903c3(0x110)]()===''?(searchSuggestions[_0x2903c3(0x16d)]['display']='none',filterByCategory(currentCategory)):showSearchSuggestions(_0x3194d7);}),searchInput['addEventListener'](_0x3de774(0x14a),_0x4e053=>{const _0x53140e=_0x3de774;if(_0x4e053[_0x53140e(0x13c)]==='Enter'){const _0x224a62=_0x4e053[_0x53140e(0xda)][_0x53140e(0xe4)];_0x224a62[_0x53140e(0x110)]()!==''&&(searchSuggestions[_0x53140e(0x16d)][_0x53140e(0x114)]=_0x53140e(0x13f),filterBySearch(_0x224a62));}}),categoryChips[_0x3de774(0x10a)](_0x3b24fe=>{const _0x3378e5=_0x3de774;_0x3b24fe[_0x3378e5(0x11e)](_0x3378e5(0xfc),()=>{const _0x1819eb=_0x3378e5;categoryChips[_0x1819eb(0x10a)](_0x4bc2bf=>_0x4bc2bf[_0x1819eb(0xe0)]['remove']('active')),_0x3b24fe[_0x1819eb(0xe0)]['add'](_0x1819eb(0x115));const _0x2268a9=_0x3b24fe['dataset']['category'];updateCustomDropdown(_0x2268a9),filterByCategory(_0x2268a9);});}),menuIcon[_0x3de774(0x11e)]('click',()=>{const _0x5f27eb=_0x3de774;bottomSheet[_0x5f27eb(0xe0)][_0x5f27eb(0x15d)](_0x5f27eb(0x115));}),closeSheet[_0x3de774(0x11e)](_0x3de774(0xfc),()=>{const _0x219941=_0x3de774;bottomSheet['classList'][_0x219941(0xfd)](_0x219941(0x115));}),closeModal['addEventListener'](_0x3de774(0xfc),()=>{const _0x21881c=_0x3de774;productModal[_0x21881c(0x16d)][_0x21881c(0x114)]=_0x21881c(0x13f),document[_0x21881c(0x103)]['style']['overflow']='auto';}),window[_0x3de774(0x11e)](_0x3de774(0xfc),_0x35ceca=>{const _0x21c1c7=_0x3de774;_0x35ceca[_0x21c1c7(0xda)]===productModal&&(productModal[_0x21c1c7(0x16d)][_0x21c1c7(0x114)]=_0x21c1c7(0x13f),document['body'][_0x21c1c7(0x16d)]['overflow']=_0x21c1c7(0x10d));}),window['addEventListener'](_0x3de774(0xfc),_0x5b6836=>{const _0x2b3ee8=_0x3de774;_0x5b6836[_0x2b3ee8(0xda)]===bottomSheet&&bottomSheet['classList'][_0x2b3ee8(0xfd)]('active');}),menuItems['forEach'](_0x12983a=>{const _0xb8cdc7=_0x3de774;_0x12983a['addEventListener'](_0xb8cdc7(0xfc),()=>{const _0x2ed3b5=_0xb8cdc7;bottomSheet[_0x2ed3b5(0xe0)][_0x2ed3b5(0xfd)](_0x2ed3b5(0x115)),window[_0x2ed3b5(0x121)][_0x2ed3b5(0x160)]=_0x2ed3b5(0x14e)+_0x12983a[_0x2ed3b5(0xee)]['page'];});});}function updateCustomDropdown(_0x7f6106){const _0xf4b185=_0x2e276c;if(!customDropdown)return;const _0x410494=document[_0xf4b185(0x12b)](_0xf4b185(0xd2)+_0x7f6106+'\x22]');_0x410494&&(selectedCategory[_0xf4b185(0x135)]=_0x410494[_0xf4b185(0x135)],dropdownItems['forEach'](_0x23d598=>_0x23d598[_0xf4b185(0xe0)][_0xf4b185(0xfd)](_0xf4b185(0x115))),_0x410494[_0xf4b185(0xe0)][_0xf4b185(0x15d)]('active'));}function checkUrlForProductCode(){const _0x1bfd04=_0x2e276c,_0xf286d0=new URLSearchParams(window[_0x1bfd04(0x121)][_0x1bfd04(0x172)]);let _0x1e2218=null;for(const [_0x4b08d2,_0x3ce550]of _0xf286d0[_0x1bfd04(0xeb)]()){if(_0x4b08d2[_0x1bfd04(0xce)](_0x1bfd04(0x117))){_0x1e2218=_0x4b08d2['replace'](_0x1bfd04(0x117),'');break;}}!_0x1e2218&&_0xf286d0[_0x1bfd04(0x15a)](_0x1bfd04(0x107))&&(_0x1e2218=_0xf286d0[_0x1bfd04(0x140)](_0x1bfd04(0x107)));if(_0x1e2218){const _0x2262e9=allProducts[_0x1bfd04(0xcf)](_0x834084=>_0x834084[_0x1bfd04(0x143)]===_0x1e2218);_0x2262e9&&(searchInput['value']=_0x1e2218,filterBySearch(_0x1e2218),setTimeout(()=>{openProductModal(_0x2262e9);},0x1f4));}}function showSearchSuggestions(_0x3a7407){const _0x1a4601=_0x2e276c,_0x513375=_0x3a7407[_0x1a4601(0xcd)]()[_0x1a4601(0x110)]();if(_0x513375===''){searchSuggestions[_0x1a4601(0x16d)][_0x1a4601(0x114)]=_0x1a4601(0x13f);return;}const _0xb6c668=allProducts['filter'](_0x222873=>_0x222873[_0x1a4601(0x150)]['toLowerCase']()[_0x1a4601(0x149)](_0x513375)||_0x222873[_0x1a4601(0x144)][_0x1a4601(0xcd)]()[_0x1a4601(0x149)](_0x513375)||_0x222873['category'][_0x1a4601(0xcd)]()['includes'](_0x513375)||_0x222873[_0x1a4601(0x143)]['toLowerCase']()[_0x1a4601(0x149)](_0x513375))[_0x1a4601(0x152)](0x0,0x5);if(_0xb6c668[_0x1a4601(0x141)]===0x0){searchSuggestions['style'][_0x1a4601(0x114)]=_0x1a4601(0x13f);return;}searchSuggestions['innerHTML']='',_0xb6c668[_0x1a4601(0x10a)](_0x206f4f=>{const _0x573e5f=_0x1a4601,_0xea2075=document['createElement'](_0x573e5f(0x158));_0xea2075['className']=_0x573e5f(0x146),_0xea2075[_0x573e5f(0x155)]=_0x573e5f(0x125)+_0x206f4f[_0x573e5f(0x143)]+_0x573e5f(0x16f)+_0x206f4f[_0x573e5f(0x150)]+_0x573e5f(0x11d),_0xea2075[_0x573e5f(0x11e)](_0x573e5f(0xfc),()=>{const _0x1a0f7f=_0x573e5f;searchInput[_0x1a0f7f(0xe4)]=_0x206f4f['productCode'],searchSuggestions['style'][_0x1a0f7f(0x114)]=_0x1a0f7f(0x13f),filterBySearch(_0x206f4f[_0x1a0f7f(0x143)]),setTimeout(()=>{openProductModal(_0x206f4f);},0x64);}),searchSuggestions[_0x573e5f(0x136)](_0xea2075);}),searchSuggestions[_0x1a4601(0x16d)]['display']=_0x1a4601(0x17a);}function renderProducts(){const _0xd1d83b=_0x2e276c;filteredProducts[_0xd1d83b(0x141)]===0x0?productsContainer[_0xd1d83b(0x155)]=_0xd1d83b(0x104):(productsContainer['innerHTML']='',filteredProducts[_0xd1d83b(0x10a)](_0x2a466b=>{const _0x3c8ac0=_0xd1d83b,_0x334261=isProductNew(_0x2a466b[_0x3c8ac0(0x180)]);!_0x2a466b[_0x3c8ac0(0x179)]&&(_0x2a466b[_0x3c8ac0(0x179)]=Math['floor'](Math[_0x3c8ac0(0x12e)]()*0x7d0)+0x3e8);const _0x18439d=document['createElement'](_0x3c8ac0(0x158));_0x18439d['className']=_0x3c8ac0(0x12d),_0x18439d[_0x3c8ac0(0x155)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-image-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22'+_0x2a466b['imageURL']+_0x3c8ac0(0x13d)+_0x2a466b['name']+_0x3c8ac0(0xe6)+(_0x334261?_0x3c8ac0(0x14d):'')+_0x3c8ac0(0xd6)+_0x2a466b[_0x3c8ac0(0x143)]+_0x3c8ac0(0x174)+_0x2a466b[_0x3c8ac0(0x150)]+_0x3c8ac0(0x16c)+_0x2a466b[_0x3c8ac0(0x178)]+_0x3c8ac0(0x11f)+_0x2a466b[_0x3c8ac0(0x154)]+_0x3c8ac0(0xd0)+_0x2a466b['views']+_0x3c8ac0(0x100)+_0x2a466b[_0x3c8ac0(0x10c)]+_0x3c8ac0(0xdf)+_0x2a466b[_0x3c8ac0(0xdd)]+_0x3c8ac0(0x151),_0x18439d[_0x3c8ac0(0x11e)]('click',_0x59573c=>{const _0x348b9b=_0x3c8ac0;if(_0x59573c[_0x348b9b(0xda)]['closest'](_0x348b9b(0xfb))||_0x59573c[_0x348b9b(0xda)][_0x348b9b(0x170)](_0x348b9b(0xcc)))return;openProductModal(_0x2a466b);});const _0x3aad83=_0x18439d[_0x3c8ac0(0x12b)]('.share-icon');_0x3aad83[_0x3c8ac0(0x11e)](_0x3c8ac0(0xfc),_0x5e53da=>{_0x5e53da['stopPropagation'](),shareProduct(_0x2a466b);}),productsContainer[_0x3c8ac0(0x136)](_0x18439d);})),productsContainer[_0xd1d83b(0x16d)][_0xd1d83b(0x114)]=_0xd1d83b(0x17b);}function isProductNew(_0x2783b6){const _0x16fdad=_0x2e276c,_0x4316e4=new Date(_0x2783b6),_0x23bc6a=new Date(),_0x2b9fde=Math['abs'](_0x23bc6a-_0x4316e4),_0x3d0cf9=Math[_0x16fdad(0x169)](_0x2b9fde/(0x3e8*0x3c*0x3c*0x18));return _0x3d0cf9<=0x7;}function filterByCategory(_0xe9a6c5){const _0x59b2dd=_0x2e276c;currentCategory=_0xe9a6c5,_0xe9a6c5===_0x59b2dd(0x157)?filteredProducts=[...allProducts]:filteredProducts=allProducts[_0x59b2dd(0x173)](_0x353b62=>_0x353b62['category'][_0x59b2dd(0xcd)]()[_0x59b2dd(0x149)](_0xe9a6c5['toLowerCase']())),searchInput[_0x59b2dd(0xe4)][_0x59b2dd(0x110)]()!==''?filterBySearch(searchInput[_0x59b2dd(0xe4)]):renderProducts();}function filterBySearch(_0x3003a3){const _0xa8664=_0x2e276c,_0xb650c6=_0x3003a3[_0xa8664(0xcd)]()[_0xa8664(0x110)]();if(_0xb650c6===''){filterByCategory(currentCategory);return;}let _0x14678a;currentCategory===_0xa8664(0x157)?_0x14678a=[...allProducts]:_0x14678a=allProducts[_0xa8664(0x173)](_0x343a96=>_0x343a96[_0xa8664(0xea)]['toLowerCase']()['includes'](currentCategory[_0xa8664(0xcd)]())),filteredProducts=_0x14678a[_0xa8664(0x173)](_0x1bd8f9=>_0x1bd8f9[_0xa8664(0x150)][_0xa8664(0xcd)]()[_0xa8664(0x149)](_0xb650c6)||_0x1bd8f9[_0xa8664(0x144)][_0xa8664(0xcd)]()[_0xa8664(0x149)](_0xb650c6)||_0x1bd8f9['category']['toLowerCase']()[_0xa8664(0x149)](_0xb650c6)||_0x1bd8f9[_0xa8664(0x143)][_0xa8664(0xcd)]()[_0xa8664(0x149)](_0xb650c6)),renderProducts();}function openProductModal(_0x34d0be){const _0x41da23=_0x2e276c,_0x21ea74=document['querySelector'](_0x41da23(0x123)),_0x275d08=document['querySelector'](_0x41da23(0xd3));_0x21ea74[_0x41da23(0x155)]=_0x41da23(0x12c)+_0x34d0be['imageURL']+'\x22\x20alt=\x22'+_0x34d0be[_0x41da23(0x150)]+'\x22\x20class=\x22modal-image\x22\x20onerror=\x22this.src=\x27https://via.placeholder.com/600x400?text=Image+Not+Found\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22modal-product-code\x22>'+_0x34d0be['productCode']+_0x41da23(0x166)+_0x34d0be[_0x41da23(0x150)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22modal-product-price\x22>₹'+_0x34d0be['priceMin']+'\x20~\x20₹'+_0x34d0be['priceMax']+_0x41da23(0x128)+_0x34d0be[_0x41da23(0x179)]+_0x41da23(0x14f)+_0x34d0be['description']+_0x41da23(0x13a)+_0x34d0be[_0x41da23(0x10c)]+_0x41da23(0x11a)+_0x34d0be[_0x41da23(0xdd)]+_0x41da23(0xdc);const _0x2d62ac=allProducts[_0x41da23(0x173)](_0x2c0004=>_0x2c0004[_0x41da23(0xea)]===_0x34d0be[_0x41da23(0xea)]&&_0x2c0004[_0x41da23(0x143)]!==_0x34d0be[_0x41da23(0x143)])['slice'](0x0,0x4);_0x275d08['innerHTML']='',_0x2d62ac[_0x41da23(0x141)]===0x0?document[_0x41da23(0x12b)]('.related-products')[_0x41da23(0x16d)][_0x41da23(0x114)]='none':(document[_0x41da23(0x12b)](_0x41da23(0x119))['style'][_0x41da23(0x114)]=_0x41da23(0x17a),_0x2d62ac[_0x41da23(0x10a)](_0x1aaa90=>{const _0x32fed3=_0x41da23,_0xe9af7a=document[_0x32fed3(0xe9)](_0x32fed3(0x158));_0xe9af7a[_0x32fed3(0x14c)]=_0x32fed3(0x105),_0xe9af7a['innerHTML']=_0x32fed3(0x131)+_0x1aaa90[_0x32fed3(0xf8)]+_0x32fed3(0x13d)+_0x1aaa90[_0x32fed3(0x150)]+_0x32fed3(0xf2)+_0x1aaa90['name']+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22related-product-price\x22>₹'+_0x1aaa90[_0x32fed3(0x178)]+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22related-product-views\x22><i\x20class=\x22fas\x20fa-eye\x22></i>\x20'+_0x1aaa90[_0x32fed3(0x179)]+_0x32fed3(0x148),_0xe9af7a[_0x32fed3(0x11e)]('click',()=>{openProductModal(_0x1aaa90);}),_0x275d08['appendChild'](_0xe9af7a);})),productModal[_0x41da23(0x16d)]['display']='block',document[_0x41da23(0x103)][_0x41da23(0x16d)][_0x41da23(0xf9)]=_0x41da23(0xdb);}function _0xec92(){const _0xb7a211=['hidden','</a>\x0a\x20\x20\x20\x20','buyOn','1DlOZzS','\x22\x20class=\x22buy-button\x22\x20target=\x22_blank\x22>Buy\x20on\x20','classList','contains','Name','\x20-\x20BUYHUT\x20store','value','DOMContentLoaded','\x22\x20class=\x22product-image\x22\x20onerror=\x22this.src=\x27https://via.placeholder.com/300?text=Image+Not+Found\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22share-icon\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-share-alt\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','toISOString','\x20has\x20insufficient\x20data,\x20skipping','createElement','category','entries','Product\x20shared\x20successfully!','PriceMax','dataset','then','Products','warn','\x22\x20class=\x22related-product-image\x22\x20onerror=\x22this.src=\x27https://via.placeholder.com/150?text=Image+Not+Found\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22related-product-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22related-product-name\x22>','Row\x20','opacity','2494359WLTFqD','json','\x20on\x20BUYHUT\x20store!\x20Price:\x20₹','imageURL','overflow','buylink','.buy-button','click','remove','ImageURL','1581cyVsow','\x20views</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','.close-modal','.menu-item','body','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22no-products\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-search\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>No\x20Products\x20Found</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Try\x20adjusting\x20your\x20search\x20or\x20category\x20filter.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','related-product-card','1305772zUFQEc','code','pathname','CreatedTime','forEach','input','buyLink','auto','1uQ8682WiB6OfPnKyl390l3xz981_wpi439Ms97bSd4I','toastMessage','trim','\x22\x20not\x20found\x20in\x20Google\x20Sheet\x20headers','flex','BuyOn','display','active','querySelectorAll','product','origin','.related-products','\x22\x20class=\x22modal-buy-button\x22\x20target=\x22_blank\x22>Buy\x20on\x20','26508zzCQNe','\x20is\x20missing\x20required\x20ProductCode,\x20skipping','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','addEventListener','\x20~\x20₹','BuyLink','location','productcode','.modal-body','pricemin','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22suggestion-code\x22>','share','Unknown\x20Product','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22modal-product-views\x22><i\x20class=\x22fas\x20fa-eye\x22></i>\x20','searchSuggestions','push','querySelector','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','product-card','random','1090cAWXvS','customDropdown','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','Uncategorized','/values/','bottomSheet','textContent','appendChild','selectedCategory','message','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22error-message\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-exclamation-circle\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Error\x20Loading\x20Products</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>There\x20was\x20a\x20problem\x20loading\x20products\x20from\x20Google\x20Sheets:\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','No\x20description\x20available','key','\x22\x20alt=\x22','HTTP\x20error!\x20Status:\x20','none','get','length','.custom-dropdown-selected','productCode','description','?key=','search-suggestion-item','copy','\x20views</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','includes','keypress','Description','className','<div\x20class=\x22new-tag\x22>New</div>','info.html?section=','\x20views</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22modal-product-description\x22>','name','</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','slice','13251964EtqrOH','priceMax','innerHTML','findIndex','all','div','9452cLPogi','has','Error\x20fetching\x20products:','https://via.placeholder.com/300','add','9CAcENw','276jMcKFQ','href','catch','7412080eMZCmW','PriceMin','open','dropdownMenu','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22modal-product-name\x22>','toast','https://sheets.googleapis.com/v4/spreadsheets/','ceil','A2:J1000','Required\x20column\x20\x22','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-price\x22>₹','style','sort','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22suggestion-name\x22>','closest','execCommand','search','filter','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-name\x22>','fixed','values','10JMUcGV','priceMin','views','block','grid','?code=','2185882iUrNmJ','select','Error\x20sharing:','createdTime','getElementById','.share-icon','toLowerCase','startsWith','find','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-views\x22><i\x20class=\x22fas\x20fa-eye\x22></i>\x20','pricemax','.custom-dropdown-item[data-value=\x22','.related-products-container','searchInput','imageurl','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22product-code\x22>','buyon','error','loadingSpinner','target'];_0xec92=function(){return _0xb7a211;};return _0xec92();}function shareProduct(_0x2b2041){const _0x42ca9e=_0x2e276c,_0x6c2c34=''+window[_0x42ca9e(0x121)][_0x42ca9e(0x118)]+window[_0x42ca9e(0x121)][_0x42ca9e(0x108)]+_0x42ca9e(0x17c)+_0x2b2041[_0x42ca9e(0x143)];navigator[_0x42ca9e(0x126)]?navigator['share']({'title':_0x2b2041[_0x42ca9e(0x150)]+_0x42ca9e(0xe3),'text':'Check\x20out\x20this\x20'+_0x2b2041[_0x42ca9e(0x150)]+_0x42ca9e(0xf7)+_0x2b2041['priceMin']+_0x42ca9e(0x11f)+_0x2b2041[_0x42ca9e(0x154)],'url':_0x6c2c34})[_0x42ca9e(0xef)](()=>{const _0x4b0b8a=_0x42ca9e;showToast(_0x4b0b8a(0xec));})[_0x42ca9e(0x161)](_0x15d86f=>{const _0x26c155=_0x42ca9e;console[_0x26c155(0xd8)](_0x26c155(0x17f),_0x15d86f),copyToClipboard(_0x6c2c34);}):copyToClipboard(_0x6c2c34);}function copyToClipboard(_0x25654a){const _0x37949d=_0x2e276c,_0x77e783=document['createElement'](_0x37949d(0x10b));_0x77e783[_0x37949d(0x16d)]['position']=_0x37949d(0x175),_0x77e783[_0x37949d(0x16d)][_0x37949d(0xf4)]=0x0,_0x77e783[_0x37949d(0xe4)]=_0x25654a,document['body'][_0x37949d(0x136)](_0x77e783),_0x77e783[_0x37949d(0x17e)](),document[_0x37949d(0x171)](_0x37949d(0x147)),document['body']['removeChild'](_0x77e783),showToast('Link\x20copied\x20to\x20clipboard!');}function showToast(_0x32b6b3){const _0x2b5eac=_0x2e276c,_0x304d42=document[_0x2b5eac(0x181)](_0x2b5eac(0x10f));_0x304d42['textContent']=_0x32b6b3,toast[_0x2b5eac(0x16d)][_0x2b5eac(0x114)]='block',setTimeout(()=>{const _0x55469f=_0x2b5eac;toast[_0x55469f(0x16d)]['display']=_0x55469f(0x13f);},0xbb8);}
+let allProducts = [];
+let filteredProducts = [];
+let currentCategory = "all";
+let isLoading = true;
+const productsContainer = document.getElementById('productsContainer');
+const loadingSpinner = document.getElementById("loadingSpinner");
+const searchInput = document.getElementById("searchInput");
+const searchSuggestions = document.getElementById("searchSuggestions");
+const categoryChips = document.querySelectorAll('.category-chip');
+const menuIcon = document.getElementById('menuIcon');
+const bottomSheet = document.getElementById("bottomSheet");
+const closeSheet = document.querySelector('.close-sheet');
+const menuItems = document.querySelectorAll(".menu-item");
+const productModal = document.getElementById('productModal');
+const closeModal = document.querySelector(".close-modal");
+const toast = document.getElementById("toast");
+const customDropdown = document.getElementById("customDropdown");
+const selectedCategory = document.getElementById("selectedCategory");
+const dropdownItems = document.querySelectorAll('.custom-dropdown-item');
+// ========== NEW NAVIGATION FUNCTIONALITY - ADD THIS ==========
+
+// Navigation functionality for new nav bar
+const navItems = document.querySelectorAll('.nav-item');
+
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        // Remove active class from all items
+        navItems.forEach(nav => nav.classList.remove('active'));
+        // Add active class to clicked item
+        item.classList.add('active');
+        
+        // Get category from nav item
+        const category = item.getAttribute('data-category');
+        
+        // Update the category chips to match
+        categoryChips.forEach(chip => {
+            if (chip.dataset.category === category) {
+                chip.classList.add('active');
+            } else {
+                chip.classList.remove('active');
+            }
+        });
+        
+        // Update dropdown to match
+        updateCustomDropdown(category);
+        
+        // Filter products
+        filterByCategory(category);
+        
+        // Scroll to products
+        window.scrollTo({ top: 70, behavior: 'smooth' });
+    });
+});
+
+// Wishlist counter (for the heart icon)
+let wishlistCount = 0;
+const wishlistCountEl = document.querySelector('.wishlist-count');
+
+// ========== END OF NEW CODE ==========
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetchProducts();
+  setupEventListeners();
+  setupCustomDropdown();
+});
+async function fetchProducts() {
+  isLoading = true;
+  loadingSpinner.style.display = "flex";
+  productsContainer.style.display = "none";
+  try {
+    const _0x1d489a = await fetch("https://sheets.googleapis.com/v4/spreadsheets/1uQ8682WiB6OfPnKyl390l3xz981_wpi439Ms97bSd4I/values/Products?key=AIzaSyAq3X8C0HxkmY-l1DQlbmtqespOhauVjm0");
+    if (!_0x1d489a.ok) {
+      throw new Error("HTTP error! Status: " + _0x1d489a.status);
+    }
+    const _0x41d58c = await _0x1d489a.json();
+    if (!_0x41d58c.values || _0x41d58c.values.length === 0x0) {
+      throw new Error("No data found in the Google Sheet");
+    }
+    if (_0x41d58c.values.length < 0x2) {
+      throw new Error("Google Sheet must have at least 2 rows: headers in Row 1 and product data starting from Row 2");
+    }
+    const _0x1c78ba = _0x41d58c.values[0x0];
+    const _0x40caba = ["Name", "PriceMin", "PriceMax", 'Category', "BuyLink", "BuyOn", "ImageURL", "CreatedTime", "Description", 'ProductCode'];
+    const _0x19f230 = {};
+    _0x40caba.forEach(_0x4a048f => {
+      const _0x1380b6 = _0x1c78ba.findIndex(_0x26e9d2 => _0x26e9d2.trim().toLowerCase() === _0x4a048f.toLowerCase());
+      if (_0x1380b6 === -0x1) {
+        throw new Error("Required column \"" + _0x4a048f + "\" not found in Google Sheet headers");
+      }
+      _0x19f230[_0x4a048f.toLowerCase()] = _0x1380b6;
+    });
+    allProducts = [];
+    for (let _0x4cd106 = 0x1; _0x4cd106 < _0x41d58c.values.length; _0x4cd106++) {
+      const _0x4169db = _0x41d58c.values[_0x4cd106];
+      if (_0x4169db.length < _0x1c78ba.length) {
+        console.warn("Row " + (_0x4cd106 + 0x1) + " has insufficient data, skipping");
+        continue;
+      }
+      const _0x1de041 = _0x19f230.productcode;
+      if (!_0x4169db[_0x1de041] || _0x4169db[_0x1de041].trim() === '') {
+        console.warn("Row " + (_0x4cd106 + 0x1) + " is missing required ProductCode, skipping");
+        continue;
+      }
+      const _0x314c14 = {
+        'name': _0x4169db[_0x19f230.name] || "Unknown Product",
+        'priceMin': _0x4169db[_0x19f230.pricemin] || '0',
+        'priceMax': _0x4169db[_0x19f230.pricemax] || '0',
+        'category': _0x4169db[_0x19f230.category] || "Uncategorized",
+        'buyLink': _0x4169db[_0x19f230.buylink] || '#',
+        'buyOn': _0x4169db[_0x19f230.buyon] || 'Store',
+        'imageURL': _0x4169db[_0x19f230.imageurl] || "https://via.placeholder.com/300",
+        'createdTime': _0x4169db[_0x19f230.createdtime] || new Date().toISOString(),
+        'description': _0x4169db[_0x19f230.description] || "No description available",
+        'productCode': _0x4169db[_0x19f230.productcode],
+        'views': Math.floor(Math.random() * 0x7d0) + 0x3e8
+      };
+      allProducts.push(_0x314c14);
+    }
+    if (allProducts.length === 0x0) {
+      throw new Error("No valid products found in the Google Sheet. Make sure ProductCode is provided for each product.");
+    }
+    allProducts.sort((_0x40baad, _0x164ba6) => {
+      return new Date(_0x164ba6.createdTime) - new Date(_0x40baad.createdTime);
+    });
+    filteredProducts = [...allProducts];
+    renderProducts();
+    checkUrlForProductCode();
+  } catch (_0x9649d4) {
+    console.error("Error fetching products:", _0x9649d4);
+    productsContainer.innerHTML = "\n            <div class=\"error-message\">\n                <i class=\"fas fa-exclamation-circle\"></i>\n                <h3>Error Loading Products</h3>\n                <p>There was a problem loading products from Google Sheets: " + _0x9649d4.message + "</p>\n                <button onclick=\"fetchProducts()\">Try Again</button>\n            </div>\n        ";
+    productsContainer.style.display = 'block';
+  } finally {
+    isLoading = false;
+    loadingSpinner.style.display = "none";
+  }
+}
+function setupCustomDropdown() {
+  if (!customDropdown) {
+    return;
+  }
+  customDropdown.querySelector(".custom-dropdown-selected").addEventListener("click", () => {
+    customDropdown.classList.toggle("open");
+  });
+  document.addEventListener("click", _0x4c143b => {
+    if (!customDropdown.contains(_0x4c143b.target)) {
+      customDropdown.classList.remove("open");
+    }
+  });
+  dropdownItems.forEach(_0x533664 => {
+    _0x533664.addEventListener('click', () => {
+      selectedCategory.textContent = _0x533664.textContent;
+      dropdownItems.forEach(_0x22d7b1 => _0x22d7b1.classList.remove('active'));
+      _0x533664.classList.add("active");
+      customDropdown.classList.remove("open");
+      const _0x4a30a1 = _0x533664.dataset.value;
+      categoryChips.forEach(_0x2680b8 => {
+        if (_0x2680b8.dataset.category === _0x4a30a1) {
+          _0x2680b8.classList.add("active");
+        } else {
+          _0x2680b8.classList.remove('active');
+        }
+      });
+      filterByCategory(_0x4a30a1);
+    });
+  });
+}
+function setupEventListeners() {
+  searchInput.addEventListener("input", _0x17cd6b => {
+    const _0x3194d7 = _0x17cd6b.target.value;
+    if (_0x3194d7.trim() === '') {
+      searchSuggestions.style.display = 'none';
+      filterByCategory(currentCategory);
+    } else {
+      showSearchSuggestions(_0x3194d7);
+    }
+  });
+  searchInput.addEventListener("keypress", _0x4e053 => {
+    if (_0x4e053.key === 'Enter') {
+      const _0x224a62 = _0x4e053.target.value;
+      if (_0x224a62.trim() !== '') {
+        searchSuggestions.style.display = "none";
+        filterBySearch(_0x224a62);
+      }
+    }
+  });
+  categoryChips.forEach(_0x3b24fe => {
+    _0x3b24fe.addEventListener("click", () => {
+      categoryChips.forEach(_0x4bc2bf => _0x4bc2bf.classList.remove('active'));
+      _0x3b24fe.classList.add("active");
+      const _0x2268a9 = _0x3b24fe.dataset.category;
+      updateCustomDropdown(_0x2268a9);
+      filterByCategory(_0x2268a9);
+    });
+  });
+  menuIcon.addEventListener('click', () => {
+    bottomSheet.classList.add("active");
+  });
+  closeSheet.addEventListener("click", () => {
+    bottomSheet.classList.remove("active");
+  });
+  closeModal.addEventListener("click", () => {
+    productModal.style.display = "none";
+    document.body.style.overflow = 'auto';
+  });
+  window.addEventListener("click", _0x35ceca => {
+    if (_0x35ceca.target === productModal) {
+      productModal.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  });
+  window.addEventListener("click", _0x5b6836 => {
+    if (_0x5b6836.target === bottomSheet) {
+      bottomSheet.classList.remove('active');
+    }
+  });
+  menuItems.forEach(_0x12983a => {
+    _0x12983a.addEventListener("click", () => {
+      bottomSheet.classList.remove("active");
+      window.location.href = "info.html?section=" + _0x12983a.dataset.page;
+    });
+  });
+}
+function updateCustomDropdown(_0x7f6106) {
+  if (!customDropdown) {
+    return;
+  }
+  const _0x410494 = document.querySelector(".custom-dropdown-item[data-value=\"" + _0x7f6106 + "\"]");
+  if (_0x410494) {
+    selectedCategory.textContent = _0x410494.textContent;
+    dropdownItems.forEach(_0x23d598 => _0x23d598.classList.remove("active"));
+    _0x410494.classList.add('active');
+  }
+}
+function checkUrlForProductCode() {
+  const _0xf286d0 = new URLSearchParams(window.location.search);
+  let _0x1e2218 = null;
+  for (const [_0x4b08d2, _0x3ce550] of _0xf286d0.entries()) {
+    if (_0x4b08d2.startsWith("product")) {
+      _0x1e2218 = _0x4b08d2.replace("product", '');
+      break;
+    }
+  }
+  if (!_0x1e2218 && _0xf286d0.has("code")) {
+    _0x1e2218 = _0xf286d0.get("code");
+  }
+  if (_0x1e2218) {
+    const _0x2262e9 = allProducts.find(_0x834084 => _0x834084.productCode === _0x1e2218);
+    if (_0x2262e9) {
+      searchInput.value = _0x1e2218;
+      filterBySearch(_0x1e2218);
+      setTimeout(() => {
+        openProductModal(_0x2262e9);
+      }, 0x1f4);
+    }
+  }
+}
+function showSearchSuggestions(_0x3a7407) {
+  const _0x513375 = _0x3a7407.toLowerCase().trim();
+  if (_0x513375 === '') {
+    searchSuggestions.style.display = "none";
+    return;
+  }
+  const _0xb6c668 = allProducts.filter(_0x222873 => _0x222873.name.toLowerCase().includes(_0x513375) || _0x222873.description.toLowerCase().includes(_0x513375) || _0x222873.category.toLowerCase().includes(_0x513375) || _0x222873.productCode.toLowerCase().includes(_0x513375)).slice(0x0, 0x5);
+  if (_0xb6c668.length === 0x0) {
+    searchSuggestions.style.display = "none";
+    return;
+  }
+  searchSuggestions.innerHTML = '';
+  _0xb6c668.forEach(_0x206f4f => {
+    const _0xea2075 = document.createElement("div");
+    _0xea2075.className = "search-suggestion-item";
+    _0xea2075.innerHTML = "\n            <span class=\"suggestion-code\">" + _0x206f4f.productCode + "</span>\n            <span class=\"suggestion-name\">" + _0x206f4f.name + "</span>\n        ";
+    _0xea2075.addEventListener("click", () => {
+      searchInput.value = _0x206f4f.productCode;
+      searchSuggestions.style.display = "none";
+      filterBySearch(_0x206f4f.productCode);
+      setTimeout(() => {
+        openProductModal(_0x206f4f);
+      }, 0x64);
+    });
+    searchSuggestions.appendChild(_0xea2075);
+  });
+  searchSuggestions.style.display = "block";
+}
+function renderProducts() {
+  if (filteredProducts.length === 0x0) {
+    productsContainer.innerHTML = "\n            <div class=\"no-products\">\n                <i class=\"fas fa-search\"></i>\n                <h3>No Products Found</h3>\n                <p>Try adjusting your search or category filter.</p>\n            </div>\n        ";
+  } else {
+    productsContainer.innerHTML = '';
+    filteredProducts.forEach(_0x2a466b => {
+      const _0x334261 = isProductNew(_0x2a466b.createdTime);
+      if (!_0x2a466b.views) {
+        _0x2a466b.views = Math.floor(Math.random() * 0x7d0) + 0x3e8;
+      }
+      const _0x18439d = document.createElement("div");
+      _0x18439d.className = "product-card";
+      _0x18439d.innerHTML = "\n                <div class=\"product-image-container\">\n                    <img src=\"" + _0x2a466b.imageURL + "\" alt=\"" + _0x2a466b.name + "\" class=\"product-image\" onerror=\"this.src='https://via.placeholder.com/300?text=Image+Not+Found'\">\n                    <div class=\"share-icon\">\n                        <i class=\"fas fa-share-alt\"></i>\n                    </div>\n                    " + (_0x334261 ? "<div class=\"new-tag\">New</div>" : '') + "\n                </div>\n                <div class=\"product-info\">\n                    <div class=\"product-code\">" + _0x2a466b.productCode + "</div>\n                    <div class=\"product-name\">" + _0x2a466b.name + "</div>\n                    <div class=\"product-price\">₹" + _0x2a466b.priceMin + " ~ ₹" + _0x2a466b.priceMax + "</div>\n                    <div class=\"product-views\"><i class=\"fas fa-eye\"></i> " + _0x2a466b.views + " views</div>\n                    <a href=\"" + _0x2a466b.buyLink + "\" class=\"buy-button\" target=\"_blank\">Buy on " + _0x2a466b.buyOn + "</a>\n                </div>\n            ";
+      _0x18439d.addEventListener('click', _0x59573c => {
+        if (_0x59573c.target.closest(".buy-button") || _0x59573c.target.closest(".share-icon")) {
+          return;
+        }
+        openProductModal(_0x2a466b);
+      });
+      const _0x3aad83 = _0x18439d.querySelector('.share-icon');
+      _0x3aad83.addEventListener("click", _0x5e53da => {
+        _0x5e53da.stopPropagation();
+        shareProduct(_0x2a466b);
+      });
+      productsContainer.appendChild(_0x18439d);
+    });
+  }
+  productsContainer.style.display = "grid";
+}
+function isProductNew(_0x2783b6) {
+  const _0x4316e4 = new Date(_0x2783b6);
+  const _0x23bc6a = new Date();
+  const _0x2b9fde = Math.abs(_0x23bc6a - _0x4316e4);
+  const _0x3d0cf9 = Math.ceil(_0x2b9fde / 86400000);
+  return _0x3d0cf9 <= 0x7;
+}
+function filterByCategory(_0xe9a6c5) {
+  currentCategory = _0xe9a6c5;
+  if (_0xe9a6c5 === "all") {
+    filteredProducts = [...allProducts];
+  } else {
+    filteredProducts = allProducts.filter(_0x353b62 => _0x353b62.category.toLowerCase().includes(_0xe9a6c5.toLowerCase()));
+  }
+  if (searchInput.value.trim() !== '') {
+    filterBySearch(searchInput.value);
+  } else {
+    renderProducts();
+  }
+}
+function filterBySearch(_0x3003a3) {
+  const _0xb650c6 = _0x3003a3.toLowerCase().trim();
+  if (_0xb650c6 === '') {
+    filterByCategory(currentCategory);
+    return;
+  }
+  let _0x14678a;
+  if (currentCategory === "all") {
+    _0x14678a = [...allProducts];
+  } else {
+    _0x14678a = allProducts.filter(_0x343a96 => _0x343a96.category.toLowerCase().includes(currentCategory.toLowerCase()));
+  }
+  filteredProducts = _0x14678a.filter(_0x1bd8f9 => _0x1bd8f9.name.toLowerCase().includes(_0xb650c6) || _0x1bd8f9.description.toLowerCase().includes(_0xb650c6) || _0x1bd8f9.category.toLowerCase().includes(_0xb650c6) || _0x1bd8f9.productCode.toLowerCase().includes(_0xb650c6));
+  renderProducts();
+}
+function openProductModal(_0x34d0be) {
+  const _0x21ea74 = document.querySelector(".modal-body");
+  const _0x275d08 = document.querySelector(".related-products-container");
+  _0x21ea74.innerHTML = "\n        <img src=\"" + _0x34d0be.imageURL + "\" alt=\"" + _0x34d0be.name + "\" class=\"modal-image\" onerror=\"this.src='https://via.placeholder.com/600x400?text=Image+Not+Found'\">\n        <div class=\"modal-product-code\">" + _0x34d0be.productCode + "</div>\n        <div class=\"modal-product-name\">" + _0x34d0be.name + "</div>\n        <div class=\"modal-product-price\">₹" + _0x34d0be.priceMin + " ~ ₹" + _0x34d0be.priceMax + "</div>\n        <div class=\"modal-product-views\"><i class=\"fas fa-eye\"></i> " + _0x34d0be.views + " views</div>\n        <div class=\"modal-product-description\">" + _0x34d0be.description + "</div>\n        <a href=\"" + _0x34d0be.buyLink + "\" class=\"modal-buy-button\" target=\"_blank\">Buy on " + _0x34d0be.buyOn + "</a>\n    ";
+  const _0x2d62ac = allProducts.filter(_0x2c0004 => _0x2c0004.category === _0x34d0be.category && _0x2c0004.productCode !== _0x34d0be.productCode).slice(0x0, 0x4);
+  _0x275d08.innerHTML = '';
+  if (_0x2d62ac.length === 0x0) {
+    document.querySelector('.related-products').style.display = 'none';
+  } else {
+    document.querySelector(".related-products").style.display = "block";
+    _0x2d62ac.forEach(_0x1aaa90 => {
+      const _0xe9af7a = document.createElement("div");
+      _0xe9af7a.className = "related-product-card";
+      _0xe9af7a.innerHTML = "\n                <img src=\"" + _0x1aaa90.imageURL + "\" alt=\"" + _0x1aaa90.name + "\" class=\"related-product-image\" onerror=\"this.src='https://via.placeholder.com/150?text=Image+Not+Found'\">\n                <div class=\"related-product-info\">\n                    <div class=\"related-product-name\">" + _0x1aaa90.name + "</div>\n                    <div class=\"related-product-price\">₹" + _0x1aaa90.priceMin + "</div>\n                    <div class=\"related-product-views\"><i class=\"fas fa-eye\"></i> " + _0x1aaa90.views + " views</div>\n                </div>\n            ";
+      _0xe9af7a.addEventListener('click', () => {
+        openProductModal(_0x1aaa90);
+      });
+      _0x275d08.appendChild(_0xe9af7a);
+    });
+  }
+  productModal.style.display = 'block';
+  document.body.style.overflow = "hidden";
+}
+function shareProduct(_0x2b2041) {
+  const _0x6c2c34 = '' + window.location.origin + window.location.pathname + "?code=" + _0x2b2041.productCode;
+  if (navigator.share) {
+    navigator.share({
+      'title': _0x2b2041.name + " - BUYHUT store",
+      'text': "Check out this " + _0x2b2041.name + " on BUYHUT store! Price: ₹" + _0x2b2041.priceMin + " ~ ₹" + _0x2b2041.priceMax,
+      'url': _0x6c2c34
+    }).then(() => {
+      showToast("Product shared successfully!");
+    })["catch"](_0x15d86f => {
+      console.error("Error sharing:", _0x15d86f);
+      copyToClipboard(_0x6c2c34);
+    });
+  } else {
+    copyToClipboard(_0x6c2c34);
+  }
+}
+function copyToClipboard(_0x25654a) {
+  const _0x77e783 = document.createElement("input");
+  _0x77e783.style.position = "fixed";
+  _0x77e783.style.opacity = 0x0;
+  _0x77e783.value = _0x25654a;
+  document.body.appendChild(_0x77e783);
+  _0x77e783.select();
+  document.execCommand("copy");
+  document.body.removeChild(_0x77e783);
+  showToast("Link copied to clipboard!");
+}
+function showToast(_0x32b6b3) {
+  const _0x304d42 = document.getElementById("toastMessage");
+  _0x304d42.textContent = _0x32b6b3;
+  toast.style.display = 'block';
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 0xbb8);
+}
