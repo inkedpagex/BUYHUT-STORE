@@ -405,3 +405,319 @@ function showToast(_0x32b6b3) {
     toast.style.display = "none";
   }, 0xbb8);
 }
+// ========== COMPLETE FIXED CODE - ADD TO END OF script.js ==========
+
+// Add swipe styles
+const swipeStyles = document.createElement('style');
+swipeStyles.textContent = `
+    .products-container {
+        transition: opacity 0.1s ease, transform 0.3s ease;
+    }
+    
+    .products-container.slide-out-left {
+        animation: slideOutLeft 0.3s ease forwards;
+    }
+    
+    .products-container.slide-out-right {
+        animation: slideOutRight 0.3s ease forwards;
+    }
+    
+    .products-container.slide-in-left {
+        animation: slideInLeft 0.3s ease forwards;
+    }
+    
+    .products-container.slide-in-right {
+        animation: slideInRight 0.3s ease forwards;
+    }
+    
+    @keyframes slideOutLeft {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(-30%);
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(30%);
+        }
+    }
+    
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(30%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+`;
+document.head.appendChild(swipeStyles);
+
+// Category configuration
+const swipeCategoryOrder = ['all', 'topwear', 'bottomwear', 'footwear', 'girls', 'accessories'];
+let swipeCurrentIndex = 0;
+let isSwipeAnimating = false;
+
+// Touch variables
+let swipeTouchStartX = 0;
+let swipeTouchEndX = 0;
+let swipeTouchStartY = 0;
+let swipeTouchEndY = 0;
+const swipeMinThreshold = 50;
+
+// Add touch listeners
+document.body.addEventListener('touchstart', (e) => {
+    if (shouldIgnoreSwipeTouch(e)) return;
+    swipeTouchStartX = e.changedTouches[0].screenX;
+    swipeTouchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.body.addEventListener('touchend', (e) => {
+    if (shouldIgnoreSwipeTouch(e) || isSwipeAnimating) return;
+    swipeTouchEndX = e.changedTouches[0].screenX;
+    swipeTouchEndY = e.changedTouches[0].screenY;
+    handleSwipeGesture();
+}, { passive: true });
+
+function shouldIgnoreSwipeTouch(e) {
+    return e.target.closest('.modal') || 
+           e.target.closest('.bottom-sheet') || 
+           e.target.closest('input') ||
+           e.target.closest('.buy-button') ||
+           e.target.closest('.share-icon');
+}
+
+function handleSwipeGesture() {
+    const horizontal = swipeTouchEndX - swipeTouchStartX;
+    const vertical = Math.abs(swipeTouchEndY - swipeTouchStartY);
+    
+    if (Math.abs(horizontal) > swipeMinThreshold && Math.abs(horizontal) > vertical) {
+        if (horizontal > 0 && swipeCurrentIndex > 0) {
+            // Swipe right - previous
+            swipeCurrentIndex--;
+            slideToSwipeCategory('right');
+        } else if (horizontal < 0 && swipeCurrentIndex < swipeCategoryOrder.length - 1) {
+            // Swipe left - next
+            swipeCurrentIndex++;
+            slideToSwipeCategory('left');
+        }
+    }
+}
+
+function slideToSwipeCategory(direction) {
+    if (isSwipeAnimating) return;
+    isSwipeAnimating = true;
+    
+    const container = document.getElementById('productsContainer');
+    const category = swipeCategoryOrder[swipeCurrentIndex];
+    
+    // Slide out animation
+    container.classList.add(direction === 'left' ? 'slide-out-left' : 'slide-out-right');
+    
+    setTimeout(() => {
+        // Update category
+        currentCategory = category;
+        filterByCategory(category);
+        
+        // Update nav
+        updateSwipeNavigation(category);
+        
+        // Remove old animation
+        container.classList.remove('slide-out-left', 'slide-out-right');
+        
+        // Slide in animation
+        container.classList.add(direction === 'left' ? 'slide-in-right' : 'slide-in-left');
+        
+        setTimeout(() => {
+            container.classList.remove('slide-in-left', 'slide-in-right');
+            isSwipeAnimating = false;
+        }, 250);
+    }, 100);
+}
+
+function updateSwipeNavigation(category) {
+    // Update nav items
+    document.querySelectorAll('.nav-item').forEach(item => {
+        if (item.getAttribute('data-category') === category) {
+            item.classList.add('active');
+            item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+            item.classList.remove('active');
+        }
+    });
+    
+    // Update chips if exist
+    document.querySelectorAll('.category-chip').forEach(chip => {
+        if (chip.dataset.category === category) {
+            chip.classList.add('active');
+        } else {
+            chip.classList.remove('active');
+        }
+    });
+    
+    // Update dropdown
+    if (typeof updateCustomDropdown === 'function') {
+        updateCustomDropdown(category);
+    }
+}
+
+// Sync index when clicking nav manually
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const category = item.getAttribute('data-category');
+        swipeCurrentIndex = swipeCategoryOrder.indexOf(category);
+    });
+});
+
+// ========== ADVANCED MODAL CODE ==========
+
+// Override openProductModal function
+window.openProductModal = function(product) {
+    const modalBody = document.querySelector('.modal-body');
+    const relatedContainer = document.querySelector('.related-products-container');
+    
+    // Check if product is new
+    const productIsNew = isProductNew(product.createdTime);
+    
+    // Create modal content with new structure
+    modalBody.innerHTML = `
+        <div class="modal-image-section">
+            <img src="${product.imageURL}" 
+                 alt="${product.name}" 
+                 class="modal-image" 
+                 onerror="this.src='https://via.placeholder.com/600x400?text=Image+Not+Found'"
+                 onload="this.parentElement.classList.add('loaded')">
+        </div>
+        
+        <div class="modal-info-section">
+            <div class="modal-product-code">${product.productCode}</div>
+            
+            <h2 class="modal-product-name">${product.name}</h2>
+            
+            <div class="modal-price-section">
+                <div>
+                    <div class="price-label">Price Range</div>
+                    <div class="modal-product-price">₹${product.priceMin} - ₹${product.priceMax}</div>
+                </div>
+            </div>
+            
+            <div class="modal-stats">
+                <div class="modal-product-views">
+                    <i class="fas fa-eye"></i>
+                    <span>${product.views} views</span>
+                </div>
+                ${productIsNew ? '<span class="stat-divider"></span><div class="new-badge"><i class="fas fa-star"></i> New Arrival</div>' : ''}
+            </div>
+            
+            <div class="modal-product-description">
+                <strong>Description:</strong><br>
+                ${product.description}
+            </div>
+            
+            <div class="modal-features">
+                <h4><i class="fas fa-check-circle" style="color: #ffce00;"></i> Why Buy This?</h4>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Authentic Product</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Fast Delivery Available</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-undo"></i>
+                        <span>Easy Returns & Exchange</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-tags"></i>
+                        <span>Best Price Guaranteed</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <a href="${product.buyLink}" class="modal-buy-button" target="_blank">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Buy on ${product.buyOn}</span>
+                </a>
+                <button class="modal-share-button" onclick='shareProduct(${JSON.stringify(product)})'>
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+        </div>
+    `;
+    
+    // Load related products
+    const relatedProducts = allProducts.filter(p => 
+        p.category === product.category && 
+        p.productCode !== product.productCode
+    ).slice(0, 6);
+    
+    relatedContainer.innerHTML = '';
+    
+    if (relatedProducts.length === 0) {
+        document.querySelector('.related-products').style.display = 'none';
+    } else {
+        document.querySelector('.related-products').style.display = 'block';
+        
+        relatedProducts.forEach(relatedProduct => {
+            const card = document.createElement('div');
+            card.className = 'related-product-card';
+            card.innerHTML = `
+                <img src="${relatedProduct.imageURL}" 
+                     alt="${relatedProduct.name}" 
+                     class="related-product-image" 
+                     onerror="this.src='https://via.placeholder.com/150?text=Image+Not+Found'">
+                <div class="related-product-info">
+                    <div class="related-product-name">${relatedProduct.name}</div>
+                    <div class="related-product-price">₹${relatedProduct.priceMin}</div>
+                    <div class="related-product-views">
+                        <i class="fas fa-eye"></i> ${relatedProduct.views} views
+                    </div>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => {
+                openProductModal(relatedProduct);
+                productModal.scrollTop = 0;
+            });
+            
+            relatedContainer.appendChild(card);
+        });
+    }
+    
+    // Show modal with animation
+    productModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Scroll to top of modal
+    setTimeout(() => {
+        productModal.scrollTop = 0;
+    }, 100);
+};
+
+// ========== END OF COMPLETE CODE ==========
