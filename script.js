@@ -48,7 +48,7 @@ navItems.forEach(item => {
         filterByCategory(category);
         
         // Scroll to products
-        window.scrollTo({ top: 70, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
 
