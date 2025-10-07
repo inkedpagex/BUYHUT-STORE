@@ -75,6 +75,107 @@ header {
     cursor: pointer;
 }
 
+.header-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-icon {
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.header-icon:hover {
+    color: var(--primary-yellow);
+}
+
+.wishlist-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--accent-red);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Main Navigation */
+.main-nav {
+    display: flex;
+    justify-content: flex-start;
+    background-color: var(--primary-white);
+    border-top: 1px solid var(--light-gray);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.main-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-item {
+    flex: 0 0 auto;
+    padding: 15px 25px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item:hover {
+    color: var(--primary-yellow);
+    background-color: rgba(255, 206, 0, 0.05);
+}
+
+.nav-item.active {
+    color: var(--primary-black);
+    border-bottom: 3px solid var(--primary-yellow);
+    font-weight: 600;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .main-nav {
+        justify-content: flex-start;
+        padding: 0 10px;
+    }
+    
+    .nav-item {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .nav-item:first-child {
+        margin-left: 5px;
+    }
+    
+    .nav-item:last-child {
+        margin-right: 5px;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+    
+    .store {
+        font-size: 10px;
+    }
+}
+
 /* Search Bar Styles */
 .search-container {
     padding: 15px 20px;
@@ -698,7 +799,7 @@ header {
 }
 
 .social-icons a:hover {
-  background-color: ##fdd835;
+  background-color: #fdd835;
 }
 
 /* Toast Message Styles */
