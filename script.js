@@ -507,9 +507,12 @@ function shouldIgnoreSwipeTouch(e) {
            e.target.closest('.bottom-sheet') || 
            e.target.closest('input') ||
            e.target.closest('.buy-button') ||
-           e.target.closest('.share-icon');
+           e.target.closest('.share-icon') ||
+           e.target.closest('.main-nav') ||           // Nav bar swipe ignore
+           e.target.closest('.nav-item') ||           // Nav items swipe ignore
+           e.target.closest('.search-container') ||   // Search area ignore
+           e.target.closest('header');                // Header ignore
 }
-
 function handleSwipeGesture() {
     const horizontal = swipeTouchEndX - swipeTouchStartX;
     const vertical = Math.abs(swipeTouchEndY - swipeTouchStartY);
