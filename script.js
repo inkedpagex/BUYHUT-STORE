@@ -477,7 +477,7 @@ swipeStyles.textContent = `
 document.head.appendChild(swipeStyles);
 
 // Category configuration
-const swipeCategoryOrder = ['all', 'topwear', 'bottomwear', 'footwear', 'girls', 'accessories'];
+const swipeCategoryOrder = ['all', 'topwear', 'bottomwear', 'footwear', 'girls', 'accessories', 'Home Essentials'];
 let swipeCurrentIndex = 0;
 let isSwipeAnimating = false;
 
