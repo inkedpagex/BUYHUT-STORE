@@ -1,0 +1,500 @@
+/* Back Button in Header */
+header .back-button {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+header .back-button:hover {
+    background-color: var(--primary-yellow);
+    transform: scale(1.05);
+}
+
+header .back-button i {
+    font-size: 16px;
+    color: var(--primary-black);
+}
+
+/* Store Info Section - Store Name with Instagram */
+.store-info-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: var(--primary-white);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.store-name-display {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-black);
+}
+
+.store-instagram {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: var(--primary-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.store-instagram:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Sort and Count Section */
+.sort-count-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: var(--primary-white);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.product-count-display {
+    flex: 1;
+}
+
+.product-count-display span {
+    font-size: 14px;
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* Sort Dropdown */
+.sort-dropdown {
+    position: relative;
+}
+
+.sort-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: var(--primary-yellow);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-black);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.sort-button:hover {
+    background-color: #e6b800;
+}
+
+.sort-button i {
+    font-size: 13px;
+}
+
+.sort-options {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background-color: var(--primary-white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.sort-options.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sort-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: var(--primary-black);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.sort-option:last-child {
+    border-bottom: none;
+}
+
+.sort-option:hover {
+    background-color: var(--light-gray);
+}
+
+.sort-option.active {
+    background-color: rgba(255, 206, 0, 0.15);
+    color: var(--primary-black);
+    font-weight: 600;
+}
+
+.sort-option i {
+    font-size: 14px;
+    color: var(--primary-yellow);
+}
+
+/* Product Card Enhancements - Only additions, main styles come from styles.css */
+/* Remove any conflicting product-meta, product-actions styles */
+
+/* New Tag style override - match main page "new-tag" not "new-badge" */
+.new-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--accent-red);
+    color: var(--primary-white);
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* Modal Enhancements */
+.modal-image-section {
+    position: relative;
+    background-color: var(--light-gray);
+}
+
+.modal-image-section .modal-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.modal-info-section {
+    padding: 20px;
+}
+
+.modal-price-section {
+    margin: 15px 0;
+}
+
+.price-label {
+    font-size: 12px;
+    color: var(--dark-gray);
+    margin-bottom: 5px;
+}
+
+.modal-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 20px;
+    background-color: var(--medium-gray);
+}
+
+.modal-stats .new-badge {
+    position: static;
+    margin: 0;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-actions .modal-buy-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    border: none;
+    padding: 12px 0;
+    background-color: var(--primary-yellow);
+    color: var(--primary-black);
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-actions .modal-buy-button:hover {
+    background-color: #e6b800;
+}
+
+.modal-actions .modal-share-button {
+    width: 50px;
+    height: 50px;
+    background-color: var(--light-gray);
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-actions .modal-share-button:hover {
+    background-color: var(--medium-gray);
+}
+
+.modal-actions .modal-share-button i {
+    font-size: 18px;
+    color: var(--dark-gray);
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    min-height: 400px;
+}
+
+.empty-state i {
+    font-size: 80px;
+    color: var(--medium-gray);
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 22px;
+    color: var(--primary-black);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.empty-state p {
+    font-size: 14px;
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+.empty-state button {
+    padding: 12px 24px;
+    background-color: var(--primary-yellow);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-black);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.empty-state button:hover {
+    background-color: #e6b800;
+    transform: translateY(-2px);
+}
+
+.empty-state button i {
+    font-size: 16px;
+}
+
+/* Toast Animation */
+.toast.show {
+    display: block;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 20px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets and Medium Devices */
+@media (max-width: 768px) {
+    .store-name-display {
+        font-size: 18px;
+    }
+    
+    .store-instagram {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    
+    .sort-count-section {
+        padding: 10px 15px;
+    }
+    
+    header .back-button {
+        width: 32px;
+        height: 32px;
+    }
+    
+    header .back-button i {
+        font-size: 14px;
+    }
+    
+    /* Products Grid - 2 columns on tablets */
+    .products-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 12px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .store-info-section {
+        padding: 12px 15px;
+    }
+    
+    .store-name-display {
+        font-size: 16px;
+    }
+    
+    .store-instagram {
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+    }
+    
+    .sort-count-section {
+        padding: 10px 15px;
+    }
+    
+    .product-count-display span {
+        font-size: 13px;
+    }
+    
+    .sort-button {
+        padding: 7px 14px;
+        font-size: 12px;
+    }
+    
+    .sort-button i {
+        font-size: 12px;
+    }
+    
+    header .back-button {
+        width: 30px;
+        height: 30px;
+    }
+    
+    header .back-button i {
+        font-size: 13px;
+    }
+    
+    .empty-state {
+        padding: 40px 15px;
+    }
+    
+    .empty-state i {
+        font-size: 60px;
+    }
+    
+    .empty-state h3 {
+        font-size: 18px;
+    }
+    
+    .empty-state p {
+        font-size: 13px;
+    }
+    
+    /* Products Grid - Still 2 columns on mobile */
+    .products-container {
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .product-card {
+        margin-bottom: 0;
+    }
+    
+    .product-name {
+        font-size: 13px;
+        height: 38px;
+    }
+    
+    .product-price {
+        font-size: 14px;
+    }
+    
+    .product-code {
+        font-size: 11px;
+    }
+    
+    .buy-button {
+        font-size: 13px;
+        padding: 7px 0;
+    }
+}
+
+/* Very Small Mobile Devices */
+@media (max-width: 360px) {
+    .store-name-display {
+        font-size: 15px;
+    }
+    
+    .store-instagram {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+    }
+    
+    .sort-button {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+    
+    .product-name {
+        font-size: 12px;
+        height: 36px;
+    }
+    
+    .product-price {
+        font-size: 13px;
+    }
+    
+    .buy-button {
+        font-size: 12px;
+        padding: 6px 0;
+    }
+}

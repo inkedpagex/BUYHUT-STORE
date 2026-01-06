@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="V6Jw_muaZmFafDyInfBjXN7Pr2xI3Hkkb124vfoDIBk" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF97KB6THR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JF97KB6THR');
+    </script>
+    <title id="pageTitle">Store - BUYHUT store</title>
+    <meta name="description" content="Browse products from our curated store collection at BUYHUT store">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="list-styles.css">
+    <link rel="stylesheet" href="error.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body>
+    <!-- Header - Same as Main Page -->
+    <header>
+        <div class="back-button" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="logo">
+            <a href="index.html">
+                <span class="buy">Buy</span><span class="hut">Hut</span>
+                <span class="store">store</span>
+            </a>
+        </div>
+        <div class="menu-icon" id="menuIcon">
+            <i class="fas fa-ellipsis-v"></i>
+        </div>
+    </header>
+
+    <!-- Store Name Section with Instagram -->
+    <div class="store-info-section">
+        <div class="store-name-display" id="storeName">Store</div>
+        <a href="#" class="store-instagram" id="storeInstagram" target="_blank" style="display: none;">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search products...">
+        </div>
+    </div>
+
+    <!-- Sort and Product Count Section -->
+    <div class="sort-count-section">
+        <div class="product-count-display">
+            <span id="productCount">Loading products...</span>
+        </div>
+        <div class="sort-dropdown">
+            <button class="sort-button" id="sortButton">
+                <i class="fas fa-sort"></i>
+                <span id="sortLabel">Sort</span>
+            </button>
+            <div class="sort-options" id="sortOptions">
+                <div class="sort-option active" data-sort="default">
+                    <i class="fas fa-clock"></i> Latest First
+                </div>
+                <div class="sort-option" data-sort="price-low">
+                    <i class="fas fa-arrow-up"></i> Price: Low to High
+                </div>
+                <div class="sort-option" data-sort="price-high">
+                    <i class="fas fa-arrow-down"></i> Price: High to Low
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-container" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Loading products...</p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-container" id="productsContainer">
+        <!-- Products will be dynamically loaded here -->
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- Product details will be dynamically loaded here -->
+            </div>
+            <div class="related-products">
+                <h3>Related Products from this Store</h3>
+                <div class="related-products-container">
+                    <!-- Related products will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet Menu -->
+    <div class="bottom-sheet" id="bottomSheet">
+        <div class="bottom-sheet-content">
+            <div class="bottom-sheet-header">
+                <h3>Menu</h3>
+                <span class="close-sheet">&times;</span>
+            </div>
+            <div class="social-icons">
+                <a href="https://whatsapp.com/channel/0029Vb6IP5H1SWsy1k3GbO2A" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/buyhutstore.in?igsh=Z2YweWVraW15MGsx" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/buyhutstore" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+            <div class="menu-item" data-page="about">About Us</div>
+            <div class="menu-item" data-page="terms">Terms & Conditions</div>
+            <div class="menu-item" data-page="privacy">Privacy Policy</div>
+            <div class="menu-item" data-page="contact">Contact Us</div>
+            <div class="bottom-sheet-items"></div>
+        </div>
+    </div>
+
+    <!-- Toast Message -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-info-circle"></i>
+            <span id="toastMessage">You're being redirected to the official store.</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="list-script.js"></script>
+</body>
+</html>
