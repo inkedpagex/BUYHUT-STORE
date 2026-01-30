@@ -47,9 +47,9 @@ function getStoreFromURL() {
 // Initialize page
 document.addEventListener("DOMContentLoaded", () => {
     currentStore = getStoreFromURL();
-    
+
     console.log('Current Store:', currentStore); // Debug log
-    
+
     if (!currentStore || currentStore === '') {
         console.error('No store parameter found in URL'); // Debug log
         showError("No store specified. Redirecting to homepage...");
@@ -58,21 +58,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2000);
         return;
     }
-    
+
     // Set store name in header and title
     const storeName = storeNameMapping[currentStore] || `${currentStore} Store`;
     storeNameElement.textContent = storeName;
     document.getElementById('pageTitle').textContent = `${storeName} - BUYHUT store`;
-    
+
     // Set main BuyHut Instagram link (same for all stores)
     const instagramElement = document.getElementById('storeInstagram');
     if (instagramElement) {
         instagramElement.href = mainInstagramLink;
         instagramElement.style.display = 'flex';
     }
-    
+
     console.log('Store Name:', storeName); // Debug log
-    
+
     fetchProducts();
     setupEventListeners();
 });
@@ -81,28 +81,28 @@ document.addEventListener("DOMContentLoaded", () => {
 async function fetchProducts() {
     loadingSpinner.style.display = "flex";
     productsContainer.style.display = "none";
-    
+
     try {
         const response = await fetch("https://sheets.googleapis.com/v4/spreadsheets/1uQ8682WiB6OfPnKyl390l3xz981_wpi439Ms97bSd4I/values/Products?key=AIzaSyAq3X8C0HxkmY-l1DQlbmtqespOhauVjm0");
-        
+
         if (!response.ok) {
             throw new Error("HTTP error! Status: " + response.status);
         }
-        
+
         const data = await response.json();
-        
+
         if (!data.values || data.values.length === 0) {
             throw new Error("No data found in the Google Sheet");
         }
-        
+
         if (data.values.length < 2) {
             throw new Error("Google Sheet must have at least 2 rows: headers in Row 1 and product data starting from Row 2");
         }
-        
+
         const headers = data.values[0];
         const requiredColumns = ["Name", "PriceMin", "PriceMax", 'Category', "BuyLink", "BuyOn", "ImageURL", "CreatedTime", "Description", 'ProductCode'];
         const columnIndices = {};
-        
+
         requiredColumns.forEach(col => {
             const index = headers.findIndex(h => h.trim().toLowerCase() === col.toLowerCase());
             if (index === -1) {
@@ -110,32 +110,32 @@ async function fetchProducts() {
             }
             columnIndices[col.toLowerCase()] = index;
         });
-        
+
         allProducts = [];
-        
+
         for (let i = 1; i < data.values.length; i++) {
             const row = data.values[i];
-            
+
             if (row.length < headers.length) {
                 console.warn(`Row ${i + 1} has insufficient data, skipping`);
                 continue;
             }
-            
+
             const productCode = row[columnIndices.productcode];
-            
+
             if (!productCode || productCode.trim() === '') {
                 console.warn(`Row ${i + 1} is missing required ProductCode, skipping`);
                 continue;
             }
-            
+
             // Filter by store code (first 2 characters)
             const codePrefix = productCode.substring(0, 2).toUpperCase();
             console.log('Checking product:', productCode, 'Prefix:', codePrefix, 'Current Store:', currentStore); // Debug log
-            
+
             if (codePrefix !== currentStore) {
                 continue;
             }
-            
+
             const product = {
                 'name': row[columnIndices.name] || "Unknown Product",
                 'priceMin': parseFloat(row[columnIndices.pricemin]) || 0,
@@ -149,10 +149,10 @@ async function fetchProducts() {
                 'productCode': productCode,
                 'views': Math.floor(Math.random() * 2000) + 1000
             };
-            
+
             allProducts.push(product);
         }
-        
+
         if (allProducts.length === 0) {
             showEmptyState();
         } else {
@@ -160,7 +160,7 @@ async function fetchProducts() {
             sortProducts();
             renderProducts();
         }
-        
+
     } catch (error) {
         console.error("Error fetching products:", error);
         showError(error.message);
@@ -191,7 +191,7 @@ function showError(message) {
     const currentUrl = window.location.href;
     const urlParams = new URLSearchParams(window.location.search);
     const storeParam = urlParams.get('store');
-    
+
     productsContainer.innerHTML = `
         <div class="error-message">
             <i class="fas fa-exclamation-circle"></i>
@@ -228,10 +228,10 @@ function sortProducts() {
 function renderProducts() {
     productsContainer.innerHTML = "";
     productsContainer.style.display = "grid";
-    
+
     // Update product count
     productCountElement.textContent = `${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''} found`;
-    
+
     filteredProducts.forEach((product, index) => {
         const productCard = createProductCard(product, index);
         productsContainer.appendChild(productCard);
@@ -243,9 +243,9 @@ function createProductCard(product, index) {
     const card = document.createElement('div');
     card.className = 'product-card';
     card.style.animationDelay = `${index * 0.05}s`;
-    
+
     const isNew = isProductNew(product.createdTime);
-    
+
     card.innerHTML = `
         <div class="product-image-container">
             <img src="${product.imageURL}" 
@@ -266,21 +266,21 @@ function createProductCard(product, index) {
             <a href="${product.buyLink}" class="buy-button" target="_blank">Buy on ${product.buyOn}</a>
         </div>
     `;
-    
+
     // Handle share icon click
     const shareIcon = card.querySelector('.share-icon');
     shareIcon.addEventListener('click', (e) => {
         e.stopPropagation();
         shareProduct(product);
     });
-    
+
     // Open modal on card click (except share icon and buy button)
     card.addEventListener('click', (e) => {
         if (!e.target.closest('.buy-button') && !e.target.closest('.share-icon')) {
             openProductModal(product);
         }
     });
-    
+
     return card;
 }
 
@@ -297,74 +297,74 @@ function setupEventListeners() {
     // Search functionality
     searchInput.addEventListener("input", (e) => {
         const query = e.target.value.toLowerCase().trim();
-        
+
         if (query === '') {
             filteredProducts = [...allProducts];
         } else {
-            filteredProducts = allProducts.filter(product => 
+            filteredProducts = allProducts.filter(product =>
                 product.name.toLowerCase().includes(query) ||
                 product.category.toLowerCase().includes(query) ||
                 product.productCode.toLowerCase().includes(query) ||
                 product.description.toLowerCase().includes(query)
             );
         }
-        
+
         sortProducts();
         renderProducts();
     });
-    
+
     // Sort dropdown
     sortButton.addEventListener('click', (e) => {
         e.stopPropagation();
         sortOptions.classList.toggle('show');
     });
-    
+
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
         if (!sortButton.contains(e.target) && !sortOptions.contains(e.target)) {
             sortOptions.classList.remove('show');
         }
     });
-    
+
     // Sort option selection
     sortOptionElements.forEach(option => {
         option.addEventListener('click', () => {
             const sortType = option.getAttribute('data-sort');
             currentSort = sortType;
-            
+
             // Update active state
             sortOptionElements.forEach(opt => opt.classList.remove('active'));
             option.classList.add('active');
-            
+
             // Update button label
             const sortLabel = option.textContent.trim();
             document.getElementById('sortLabel').textContent = sortLabel;
-            
+
             // Close dropdown
             sortOptions.classList.remove('show');
-            
+
             // Re-sort and render
             sortProducts();
             renderProducts();
         });
     });
-    
+
     // Menu icon
     menuIcon.addEventListener('click', () => {
         bottomSheet.classList.add("active");
     });
-    
+
     // Close bottom sheet
     closeSheet.addEventListener('click', () => {
         bottomSheet.classList.remove("active");
     });
-    
+
     // Close modal
     closeModal.addEventListener('click', () => {
         productModal.style.display = 'none';
         document.body.style.overflow = 'auto';
     });
-    
+
     // Close modal on outside click
     window.addEventListener('click', (e) => {
         if (e.target === productModal) {
@@ -375,7 +375,7 @@ function setupEventListeners() {
             bottomSheet.classList.remove("active");
         }
     });
-    
+
     // Menu items navigation
     menuItems.forEach(item => {
         item.addEventListener("click", () => {
@@ -391,9 +391,9 @@ function setupEventListeners() {
 function openProductModal(product) {
     const modalBody = document.querySelector('.modal-body');
     const relatedContainer = document.querySelector('.related-products-container');
-    
+
     const productIsNew = isProductNew(product.createdTime);
-    
+
     modalBody.innerHTML = `
         <div class="modal-image-section">
             <img src="${product.imageURL}" 
@@ -438,20 +438,20 @@ function openProductModal(product) {
             </div>
         </div>
     `;
-    
+
     // Load related products from same store
-    const relatedProducts = allProducts.filter(p => 
-        p.category === product.category && 
+    const relatedProducts = allProducts.filter(p =>
+        p.category === product.category &&
         p.productCode !== product.productCode
     ).slice(0, 6);
-    
+
     relatedContainer.innerHTML = '';
-    
+
     if (relatedProducts.length === 0) {
         document.querySelector('.related-products').style.display = 'none';
     } else {
         document.querySelector('.related-products').style.display = 'block';
-        
+
         relatedProducts.forEach(relatedProduct => {
             const card = document.createElement('div');
             card.className = 'related-product-card';
@@ -468,19 +468,19 @@ function openProductModal(product) {
                     </div>
                 </div>
             `;
-            
+
             card.addEventListener('click', () => {
                 openProductModal(relatedProduct);
                 productModal.scrollTop = 0;
             });
-            
+
             relatedContainer.appendChild(card);
         });
     }
-    
+
     productModal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-    
+
     setTimeout(() => {
         productModal.scrollTop = 0;
     }, 100);
@@ -490,7 +490,7 @@ function openProductModal(product) {
 function shareProduct(product) {
     const shareUrl = `${window.location.origin}${window.location.pathname}?store=${currentStore}`;
     const shareText = `Check out ${product.name} on BUYHUT store!\nPrice: ₹${product.priceMin} - ₹${product.priceMax}\n\n${shareUrl}`;
-    
+
     if (navigator.share) {
         navigator.share({
             title: product.name,
@@ -513,7 +513,7 @@ function showToast(message) {
     const toastMessage = document.getElementById('toastMessage');
     toastMessage.textContent = message;
     toast.classList.add('show');
-    
+
     setTimeout(() => {
         toast.classList.remove('show');
     }, 3000);

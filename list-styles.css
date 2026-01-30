@@ -339,6 +339,7 @@ header .back-button i {
         transform: translate(-50%, 20px);
         opacity: 0;
     }
+
     to {
         transform: translate(-50%, 0);
         opacity: 1;
@@ -352,26 +353,26 @@ header .back-button i {
     .store-name-display {
         font-size: 18px;
     }
-    
+
     .store-instagram {
         width: 36px;
         height: 36px;
         font-size: 18px;
     }
-    
+
     .sort-count-section {
         padding: 10px 15px;
     }
-    
+
     header .back-button {
         width: 32px;
         height: 32px;
     }
-    
+
     header .back-button i {
         font-size: 14px;
     }
-    
+
     /* Products Grid - 2 columns on tablets */
     .products-container {
         grid-template-columns: repeat(2, 1fr);
@@ -385,82 +386,82 @@ header .back-button i {
     .store-info-section {
         padding: 12px 15px;
     }
-    
+
     .store-name-display {
         font-size: 16px;
     }
-    
+
     .store-instagram {
         width: 34px;
         height: 34px;
         font-size: 16px;
     }
-    
+
     .sort-count-section {
         padding: 10px 15px;
     }
-    
+
     .product-count-display span {
         font-size: 13px;
     }
-    
+
     .sort-button {
         padding: 7px 14px;
         font-size: 12px;
     }
-    
+
     .sort-button i {
         font-size: 12px;
     }
-    
+
     header .back-button {
         width: 30px;
         height: 30px;
     }
-    
+
     header .back-button i {
         font-size: 13px;
     }
-    
+
     .empty-state {
         padding: 40px 15px;
     }
-    
+
     .empty-state i {
         font-size: 60px;
     }
-    
+
     .empty-state h3 {
         font-size: 18px;
     }
-    
+
     .empty-state p {
         font-size: 13px;
     }
-    
+
     /* Products Grid - Still 2 columns on mobile */
     .products-container {
         gap: 10px;
         padding: 10px;
     }
-    
+
     .product-card {
         margin-bottom: 0;
     }
-    
+
     .product-name {
         font-size: 13px;
         height: 38px;
     }
-    
+
     .product-price {
         font-size: 14px;
     }
-    
+
     .product-code {
         font-size: 11px;
     }
-    
+
     .buy-button {
         font-size: 13px;
         padding: 7px 0;
@@ -472,27 +473,27 @@ header .back-button i {
     .store-name-display {
         font-size: 15px;
     }
-    
+
     .store-instagram {
         width: 32px;
         height: 32px;
         font-size: 15px;
     }
-    
+
     .sort-button {
         padding: 6px 12px;
         font-size: 11px;
     }
-    
+
     .product-name {
         font-size: 12px;
         height: 36px;
     }
-    
+
     .product-price {
         font-size: 13px;
     }
-    
+
     .buy-button {
         font-size: 12px;
         padding: 6px 0;
