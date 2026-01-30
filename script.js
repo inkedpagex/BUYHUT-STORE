@@ -23,33 +23,33 @@ const dropdownItems = document.querySelectorAll('.custom-dropdown-item');
 const navItems = document.querySelectorAll('.nav-item');
 
 navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        // Remove active class from all items
-        navItems.forEach(nav => nav.classList.remove('active'));
-        // Add active class to clicked item
-        item.classList.add('active');
-        
-        // Get category from nav item
-        const category = item.getAttribute('data-category');
-        
-        // Update the category chips to match
-        categoryChips.forEach(chip => {
-            if (chip.dataset.category === category) {
-                chip.classList.add('active');
-            } else {
-                chip.classList.remove('active');
-            }
-        });
-        
-        // Update dropdown to match
-        updateCustomDropdown(category);
-        
-        // Filter products
-        filterByCategory(category);
-        
-        // Scroll to products
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+  item.addEventListener('click', () => {
+    // Remove active class from all items
+    navItems.forEach(nav => nav.classList.remove('active'));
+    // Add active class to clicked item
+    item.classList.add('active');
+
+    // Get category from nav item
+    const category = item.getAttribute('data-category');
+
+    // Update the category chips to match
+    categoryChips.forEach(chip => {
+      if (chip.dataset.category === category) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
     });
+
+    // Update dropdown to match
+    updateCustomDropdown(category);
+
+    // Filter products
+    filterByCategory(category);
+
+    // Scroll to products
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 });
 
 // Wishlist counter (for the heart icon)
@@ -124,6 +124,9 @@ async function fetchProducts() {
     });
     filteredProducts = [...allProducts];
     renderProducts();
+    if (typeof renderFeaturedProducts === 'function') {
+      renderFeaturedProducts();
+    }
     checkUrlForProductCode();
   } catch (_0x9649d4) {
     console.error("Error fetching products:", _0x9649d4);
@@ -490,123 +493,123 @@ const swipeMinThreshold = 50;
 
 // Add touch listeners
 document.body.addEventListener('touchstart', (e) => {
-    if (shouldIgnoreSwipeTouch(e)) return;
-    swipeTouchStartX = e.changedTouches[0].screenX;
-    swipeTouchStartY = e.changedTouches[0].screenY;
+  if (shouldIgnoreSwipeTouch(e)) return;
+  swipeTouchStartX = e.changedTouches[0].screenX;
+  swipeTouchStartY = e.changedTouches[0].screenY;
 }, { passive: true });
 
 document.body.addEventListener('touchend', (e) => {
-    if (shouldIgnoreSwipeTouch(e) || isSwipeAnimating) return;
-    swipeTouchEndX = e.changedTouches[0].screenX;
-    swipeTouchEndY = e.changedTouches[0].screenY;
-    handleSwipeGesture();
+  if (shouldIgnoreSwipeTouch(e) || isSwipeAnimating) return;
+  swipeTouchEndX = e.changedTouches[0].screenX;
+  swipeTouchEndY = e.changedTouches[0].screenY;
+  handleSwipeGesture();
 }, { passive: true });
 
 function shouldIgnoreSwipeTouch(e) {
-    return e.target.closest('.modal') || 
-           e.target.closest('.bottom-sheet') || 
-           e.target.closest('input') ||
-           e.target.closest('.buy-button') ||
-           e.target.closest('.share-icon') ||
-           e.target.closest('.main-nav') ||           // Nav bar swipe ignore
-           e.target.closest('.nav-item') ||           // Nav items swipe ignore
-           e.target.closest('.search-container') ||   // Search area ignore
-           e.target.closest('header');                // Header ignore
+  return e.target.closest('.modal') ||
+    e.target.closest('.bottom-sheet') ||
+    e.target.closest('input') ||
+    e.target.closest('.buy-button') ||
+    e.target.closest('.share-icon') ||
+    e.target.closest('.main-nav') ||           // Nav bar swipe ignore
+    e.target.closest('.nav-item') ||           // Nav items swipe ignore
+    e.target.closest('.search-container') ||   // Search area ignore
+    e.target.closest('header');                // Header ignore
 }
 function handleSwipeGesture() {
-    const horizontal = swipeTouchEndX - swipeTouchStartX;
-    const vertical = Math.abs(swipeTouchEndY - swipeTouchStartY);
-    
-    if (Math.abs(horizontal) > swipeMinThreshold && Math.abs(horizontal) > vertical) {
-        if (horizontal > 0 && swipeCurrentIndex > 0) {
-            // Swipe right - previous
-            swipeCurrentIndex--;
-            slideToSwipeCategory('right');
-        } else if (horizontal < 0 && swipeCurrentIndex < swipeCategoryOrder.length - 1) {
-            // Swipe left - next
-            swipeCurrentIndex++;
-            slideToSwipeCategory('left');
-        }
+  const horizontal = swipeTouchEndX - swipeTouchStartX;
+  const vertical = Math.abs(swipeTouchEndY - swipeTouchStartY);
+
+  if (Math.abs(horizontal) > swipeMinThreshold && Math.abs(horizontal) > vertical) {
+    if (horizontal > 0 && swipeCurrentIndex > 0) {
+      // Swipe right - previous
+      swipeCurrentIndex--;
+      slideToSwipeCategory('right');
+    } else if (horizontal < 0 && swipeCurrentIndex < swipeCategoryOrder.length - 1) {
+      // Swipe left - next
+      swipeCurrentIndex++;
+      slideToSwipeCategory('left');
     }
+  }
 }
 
 function slideToSwipeCategory(direction) {
-    if (isSwipeAnimating) return;
-    isSwipeAnimating = true;
-    
-    const container = document.getElementById('productsContainer');
-    const category = swipeCategoryOrder[swipeCurrentIndex];
-    
-    // Slide out animation
-    container.classList.add(direction === 'left' ? 'slide-out-left' : 'slide-out-right');
-    
+  if (isSwipeAnimating) return;
+  isSwipeAnimating = true;
+
+  const container = document.getElementById('productsContainer');
+  const category = swipeCategoryOrder[swipeCurrentIndex];
+
+  // Slide out animation
+  container.classList.add(direction === 'left' ? 'slide-out-left' : 'slide-out-right');
+
+  setTimeout(() => {
+    // Update category
+    currentCategory = category;
+    filterByCategory(category);
+
+    // Update nav
+    updateSwipeNavigation(category);
+
+    // Remove old animation
+    container.classList.remove('slide-out-left', 'slide-out-right');
+
+    // Slide in animation
+    container.classList.add(direction === 'left' ? 'slide-in-right' : 'slide-in-left');
+
     setTimeout(() => {
-        // Update category
-        currentCategory = category;
-        filterByCategory(category);
-        
-        // Update nav
-        updateSwipeNavigation(category);
-        
-        // Remove old animation
-        container.classList.remove('slide-out-left', 'slide-out-right');
-        
-        // Slide in animation
-        container.classList.add(direction === 'left' ? 'slide-in-right' : 'slide-in-left');
-        
-        setTimeout(() => {
-            container.classList.remove('slide-in-left', 'slide-in-right');
-            isSwipeAnimating = false;
-        }, 250);
-    }, 100);
+      container.classList.remove('slide-in-left', 'slide-in-right');
+      isSwipeAnimating = false;
+    }, 250);
+  }, 100);
 }
 
 function updateSwipeNavigation(category) {
-    // Update nav items
-    document.querySelectorAll('.nav-item').forEach(item => {
-        if (item.getAttribute('data-category') === category) {
-            item.classList.add('active');
-            item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        } else {
-            item.classList.remove('active');
-        }
-    });
-    
-    // Update chips if exist
-    document.querySelectorAll('.category-chip').forEach(chip => {
-        if (chip.dataset.category === category) {
-            chip.classList.add('active');
-        } else {
-            chip.classList.remove('active');
-        }
-    });
-    
-    // Update dropdown
-    if (typeof updateCustomDropdown === 'function') {
-        updateCustomDropdown(category);
+  // Update nav items
+  document.querySelectorAll('.nav-item').forEach(item => {
+    if (item.getAttribute('data-category') === category) {
+      item.classList.add('active');
+      item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } else {
+      item.classList.remove('active');
     }
+  });
+
+  // Update chips if exist
+  document.querySelectorAll('.category-chip').forEach(chip => {
+    if (chip.dataset.category === category) {
+      chip.classList.add('active');
+    } else {
+      chip.classList.remove('active');
+    }
+  });
+
+  // Update dropdown
+  if (typeof updateCustomDropdown === 'function') {
+    updateCustomDropdown(category);
+  }
 }
 
 // Sync index when clicking nav manually
 document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-        const category = item.getAttribute('data-category');
-        swipeCurrentIndex = swipeCategoryOrder.indexOf(category);
-    });
+  item.addEventListener('click', () => {
+    const category = item.getAttribute('data-category');
+    swipeCurrentIndex = swipeCategoryOrder.indexOf(category);
+  });
 });
 
 // ========== ADVANCED MODAL CODE ==========
 
 // Override openProductModal function
-window.openProductModal = function(product) {
-    const modalBody = document.querySelector('.modal-body');
-    const relatedContainer = document.querySelector('.related-products-container');
-    
-    // Check if product is new
-    const productIsNew = isProductNew(product.createdTime);
-    
-    // Create modal content with new structure
-    modalBody.innerHTML = `
+window.openProductModal = function (product) {
+  const modalBody = document.querySelector('.modal-body');
+  const relatedContainer = document.querySelector('.related-products-container');
+
+  // Check if product is new
+  const productIsNew = isProductNew(product.createdTime);
+
+  // Create modal content with new structure
+  modalBody.innerHTML = `
         <div class="modal-image-section">
             <img src="${product.imageURL}" 
                  alt="${product.name}" 
@@ -650,24 +653,24 @@ window.openProductModal = function(product) {
             </div>
         </div>
     `;
-    
-    // Load related products
-    const relatedProducts = allProducts.filter(p => 
-        p.category === product.category && 
-        p.productCode !== product.productCode
-    ).slice(0, 6);
-    
-    relatedContainer.innerHTML = '';
-    
-    if (relatedProducts.length === 0) {
-        document.querySelector('.related-products').style.display = 'none';
-    } else {
-        document.querySelector('.related-products').style.display = 'block';
-        
-        relatedProducts.forEach(relatedProduct => {
-            const card = document.createElement('div');
-            card.className = 'related-product-card';
-            card.innerHTML = `
+
+  // Load related products
+  const relatedProducts = allProducts.filter(p =>
+    p.category === product.category &&
+    p.productCode !== product.productCode
+  ).slice(0, 6);
+
+  relatedContainer.innerHTML = '';
+
+  if (relatedProducts.length === 0) {
+    document.querySelector('.related-products').style.display = 'none';
+  } else {
+    document.querySelector('.related-products').style.display = 'block';
+
+    relatedProducts.forEach(relatedProduct => {
+      const card = document.createElement('div');
+      card.className = 'related-product-card';
+      card.innerHTML = `
                 <img src="${relatedProduct.imageURL}" 
                      alt="${relatedProduct.name}" 
                      class="related-product-image" 
@@ -680,24 +683,113 @@ window.openProductModal = function(product) {
                     </div>
                 </div>
             `;
-            
-            card.addEventListener('click', () => {
-                openProductModal(relatedProduct);
-                productModal.scrollTop = 0;
-            });
-            
-            relatedContainer.appendChild(card);
-        });
-    }
-    
-    // Show modal with animation
-    productModal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    // Scroll to top of modal
-    setTimeout(() => {
+
+      card.addEventListener('click', () => {
+        openProductModal(relatedProduct);
         productModal.scrollTop = 0;
-    }, 100);
+      });
+
+      relatedContainer.appendChild(card);
+    });
+  }
+
+  // Show modal with animation
+  productModal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+
+  // Scroll to top of modal
+  setTimeout(() => {
+    productModal.scrollTop = 0;
+  }, 100);
 };
+
+// ========== NEW APP LOGIC ==========
+
+function setupBottomNav() {
+  const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+  if (!bottomNavItems.length) return;
+
+  bottomNavItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const navType = item.dataset.nav;
+
+      // Update UI
+      bottomNavItems.forEach(nav => nav.classList.remove('active'));
+      item.classList.add('active');
+
+      if (navType === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        filterByCategory('all');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        const allNav = document.querySelector('.nav-item[data-category="all"]');
+        if (allNav) allNav.classList.add('active');
+      } else if (navType === 'search') {
+        const searchScroll = document.querySelector('.search-container') || document.querySelector('header');
+        if (searchScroll) searchScroll.scrollIntoView({ behavior: 'smooth' });
+        const input = document.getElementById('searchInput');
+        if (input) input.focus();
+      } else if (navType === 'categories') {
+        const mainNav = document.querySelector('.main-nav');
+        if (mainNav) mainNav.scrollIntoView({ behavior: 'smooth' });
+      } else if (navType === 'menu') {
+        const bottomSheet = document.getElementById('bottomSheet');
+        if (bottomSheet) {
+          bottomSheet.classList.add('active');
+        }
+      }
+    });
+  });
+}
+
+function renderFeaturedProducts() {
+  const featuredContainer = document.getElementById('featuredContainer');
+  const featuredTitle = document.getElementById('featuredTitle');
+
+  if (!featuredContainer || !allProducts || !allProducts.length) return;
+
+  // Sort by createdTime descending
+  const featuredProducts = [...allProducts]
+    .sort((a, b) => new Date(b.createdTime) - new Date(a.createdTime))
+    .slice(0, 6);
+
+  featuredContainer.innerHTML = '';
+
+  if (featuredProducts.length === 0) {
+    if (featuredTitle) featuredTitle.style.display = 'none';
+    featuredContainer.style.display = 'none';
+    return;
+  }
+
+  featuredProducts.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'featured-card';
+    card.innerHTML = `
+            <div class="featured-badge">New Arrival</div>
+            <img src="${product.imageURL}" class="featured-image" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300?text=Image+Not+Found'">
+            <div class="featured-info" style="padding: 10px;">
+                <div class="product-name" style="font-size: 14px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${product.name}</div>
+                <div class="product-price" style="font-size: 14px; font-weight: 700;">₹${product.priceMin}</div>
+            </div>
+        `;
+
+    card.addEventListener('click', () => {
+      window.openProductModal(product);
+    });
+
+    featuredContainer.appendChild(card);
+  });
+
+  if (featuredTitle) featuredTitle.style.display = 'block';
+
+  // Check layout
+  const checkLayout = () => {
+    featuredContainer.style.display = window.innerWidth >= 1024 ? 'grid' : 'flex';
+  };
+  checkLayout();
+  window.addEventListener('resize', checkLayout);
+}
+
+document.addEventListener('DOMContentLoaded', setupBottomNav);
 
 // ========== END OF COMPLETE CODE ==========

@@ -23,7 +23,8 @@ body {
     color: var(--primary-black);
     line-height: 1.6;
     overflow-x: hidden;
-    overscroll-behavior-y: none; /* Prevents bouncing on mobile */
+    overscroll-behavior-y: none;
+    /* Prevents bouncing on mobile */
 }
 
 a {
@@ -153,24 +154,24 @@ header {
         justify-content: flex-start;
         padding: 0 10px;
     }
-    
+
     .nav-item {
         padding: 12px 20px;
         font-size: 14px;
     }
-    
+
     .nav-item:first-child {
         margin-left: 5px;
     }
-    
+
     .nav-item:last-child {
         margin-right: 5px;
     }
-    
+
     .logo {
         font-size: 24px;
     }
-    
+
     .store {
         font-size: 10px;
     }
@@ -217,7 +218,7 @@ header {
     right: 0;
     background-color: white;
     border-radius: 0 0 15px 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-height: 200px;
     overflow-y: auto;
     z-index: 100;
@@ -253,14 +254,17 @@ header {
 .disclaimer-container {
     overflow: hidden;
     padding: 5px 0;
-    width: 100%; /* Make sure container takes full available width */
-    box-sizing: border-box; /* Prevent padding from increasing width */
+    width: 100%;
+    /* Make sure container takes full available width */
+    box-sizing: border-box;
+    /* Prevent padding from increasing width */
 }
 
 .disclaimer-ticker {
     display: inline-block;
     white-space: nowrap;
-    padding-left: 100%; /* Start completely outside right */
+    padding-left: 100%;
+    /* Start completely outside right */
     font-size: 12px;
     color: var(--accent-red);
     animation: ticker 48s linear infinite;
@@ -270,6 +274,7 @@ header {
     0% {
         transform: translateX(0%);
     }
+
     100% {
         transform: translateX(-100%);
     }
@@ -294,7 +299,7 @@ header {
     padding: 12px 15px;
     background-color: var(--light-gray);
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -318,7 +323,7 @@ header {
     width: 100%;
     background-color: var(--primary-white);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 100;
     max-height: 0;
     overflow: hidden;
@@ -352,12 +357,15 @@ header {
     overflow-x: auto;
     padding: 15px 10px;
     background-color: var(--primary-white);
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
 }
 
 .category-nav::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 .category-chip {
@@ -398,8 +406,13 @@ header {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Products Grid Styles */
@@ -426,7 +439,8 @@ header {
 
 .product-image-container {
     position: relative;
-    padding-top: 100%; /* 1:1 Aspect Ratio */
+    padding-top: 100%;
+    /* 1:1 Aspect Ratio */
     overflow: hidden;
 }
 
@@ -490,6 +504,7 @@ header {
     margin-bottom: 5px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 42px;
@@ -674,6 +689,7 @@ header {
     margin-bottom: 5px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 36px;
@@ -776,30 +792,261 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 99;
 }
+
 .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 15px;
-  margin-top: -5px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    margin-top: 10px;
 }
 
 .social-icons a {
-  width: 40px;
-  height: 40px;
-  background: #000;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: 0.3s ease;
+    width: 45px;
+    height: 45px;
+    background: var(--primary-black);
+    color: var(--primary-white);
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .social-icons a:hover {
-  background-color: #fdd835;
+    transform: translateY(-3px);
+    background-color: var(--primary-yellow);
+    color: var(--primary-black);
+}
+
+/* =========================================
+   NEW APP UI STYLES 
+   ========================================= */
+
+/* Bottom Navigation Bar (Mobile Only) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-white);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 999;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    /* Support for iPhone Home Bar */
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+    color: var(--dark-gray);
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.bottom-nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+    transition: transform 0.2s ease;
+}
+
+.bottom-nav-item.active {
+    color: var(--primary-black);
+    font-weight: 600;
+}
+
+.bottom-nav-item.active i {
+    color: var(--primary-yellow);
+    transform: translateY(-2px);
+}
+
+/* Featured Section (Horizontal Scroll) */
+.featured-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 0 15px 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+}
+
+.featured-container::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-card {
+    flex: 0 0 85vw;
+    /* Shows part of the next card to encourage scrolling */
+    background: var(--primary-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    scroll-snap-align: center;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.featured-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.featured-info {
+    padding: 15px;
+    background: linear-gradient(to bottom, #ffffff, #fafafa);
+}
+
+.featured-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--primary-yellow);
+    color: var(--primary-black);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+/* Adjust Body for Bottom Nav */
+@media (max-width: 1023px) {
+    body {
+        padding-bottom: 80px;
+        /* Space for bottom nav */
+    }
+
+    .menu-icon {
+        display: none;
+        /* Hide top menu icon if we have bottom nav menu */
+    }
+}
+
+/* Desktop Adaptation */
+@media (min-width: 1024px) {
+
+    /* Hide Mobile Elements */
+    .bottom-nav {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        /* Show menu icon on desktop or implement better desktop nav */
+    }
+
+    /* Desktop Layout Improvements */
+    body {
+        background-color: #f0f2f5;
+        max-width: 1600px;
+        margin: 0 auto;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
+    }
+
+    header {
+        padding: 15px 40px;
+    }
+
+    .main-nav {
+        justify-content: center;
+        padding: 0 40px;
+        background: transparent;
+        border: none;
+    }
+
+    .nav-item {
+        font-size: 16px;
+        margin: 0 10px;
+        border-radius: 20px;
+        border-bottom: none;
+    }
+
+    .nav-item.active {
+        border-bottom: none;
+        background-color: var(--primary-yellow);
+        color: var(--primary-black);
+    }
+
+    /* 5-Column Grid for Big Screens */
+    .products-container {
+        grid-template-columns: repeat(5, 1fr);
+        /* 5 items per row */
+        gap: 25px;
+        padding: 25px 40px;
+    }
+
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Featured Section on Desktop */
+    .featured-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 featured items on top */
+        gap: 25px;
+        padding: 25px 40px;
+        overflow-x: visible;
+        scroll-snap-type: none;
+    }
+
+    .featured-card {
+        flex: unset;
+        width: 100%;
+        scroll-snap-align: none;
+    }
+
+    .section-title {
+        padding: 25px 40px 10px;
+        font-size: 24px;
+    }
+}
+
+/* Extra Large Screens */
+@media (min-width: 1440px) {
+    .products-container {
+        grid-template-columns: repeat(6, 1fr);
+        /* 6 items for very wide screens */
+    }
+}
+
+/* Smooth Transitions */
+.product-card,
+.featured-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.social-icons a:hover {
+    background-color: #fdd835;
 }
 
 /* Toast Message Styles */
@@ -837,7 +1084,7 @@ header {
     .products-container {
         grid-template-columns: repeat(4, 1fr);
     }
-    
+
     .modal-content {
         max-width: 800px;
     }
